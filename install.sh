@@ -70,6 +70,21 @@ while true; do
     esac
 done
 
+# # Checking presence of git
+echo -e '# # CHECKING INSTALLED \e[33mGIT\e[0m VERSION...'
+git --version >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo -e '\e[32mGit is installed\e[0m and is version is: "\e[33m' `git --version | head -n 1` '\e[0m"'
+else
+    echo -e '\e[31mGit is not installed, installing it.....\e[0m'
+    sudo apt-get update && sudo apt-get install git
+fi
+
+# # clone .dotfiles project
+echo -e '# # Cloning .dotfiles repository...'
+cd ~
+git clone https://github.com/silvadanilo/.dotfiles.git
+
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
