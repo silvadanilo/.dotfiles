@@ -1,0 +1,48 @@
+[giggle]
+    main-window-maximized = true
+    main-window-geometry = 0x0+0+0
+    main-window-view = HistoryView
+    history-view-vpane-position = 692
+    file-view-vpane-position = 817
+[core]
+    editor = vim
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[merge]
+    #tool = meld
+    tool = diffmerge
+[color]
+    branch = auto
+    interatcive = auto
+    status = auto
+    interactive = auto
+    ui = auto
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[push]
+    default = matching
+[alias]
+    see = log --graph --decorate --abbrev-commit --oneline --all
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    df = diff
+    lg = log -p
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    logwrap = "log --format=\"%C(yellow)%h %an %ad%C(reset)%n%w(72,1,2)%s\""
+    ls = ls-files
+    prom = pull --rebase origin master
+    showhist = "!f() { git show `git rev-list --max-count=1 --all -- $1`^:$1; }; f"
+[mergetool "diffmerge"]
+    cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+    trustExitCode = true
+[rerere]
+    enabled = true
+[include]
+  # For username / creds / etc
+  path = ~/.gitconfig.local
