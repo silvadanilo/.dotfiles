@@ -4,7 +4,7 @@
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
 # files=".bashrc .vimrc .vim"       # list of files/folders to symlink in homedir
-files=".tmux.conf .fonts .gitconfig"       # list of files/folders to symlink in homedir
+files=".tmux.conf .fonts .gitconfig .vimrc.local .vimrc.plugins.local"       # list of files/folders to symlink in homedir
 
 ##########
 
@@ -107,5 +107,15 @@ done
 
 echo -e '# # Creating a fonts conf symbonlic link...'
 ln -s $dir/.config/fontconfig/conf.d ~/.fonts.conf.d
+
+while true; do
+    read -e -p "Do you want to install vimpeppers? (y/n) " -i 'y' shouldInstallVimpeppers
+    echo ""
+    case $shouldInstallVimpeppers in
+        [Yy]* ) curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 # source ~/.bashrc
