@@ -13,7 +13,8 @@ echo '#######################'
 
 function installVim() {
     echo '# #Installing Vim 7.4 ....'
-    curl https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-vim-7.4.sh -L -o - | bash
+    curl https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-vim-7.4.sh -L -o - > /tmp/install-vim-7.4.sh
+    bash /tmp/install-vim-7.4.sh
     echo '# # Vim is installed'
 }
 
