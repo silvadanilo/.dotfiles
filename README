@@ -1,2 +1,2 @@
-curl https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install.sh -L -o - >> /tmp/install-dot-files.sh
+curl https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install.sh -L -o - > /tmp/install-dot-files.sh
 /bin/bash /tmp/install-dot-files.sh
