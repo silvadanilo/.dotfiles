@@ -40,7 +40,7 @@ else
 fi
 
 while true; do
-    read -p "Do you want to compile and install vim 7.4 ? (y/n) " shouldInstallVim
+    read -e -p "Do you want to compile and install vim 7.4 ? (y/n) " -i 'n' shouldInstallVim
     echo ""
     case $shouldInstallVim in
         [Yy]* ) installVim; break;;
@@ -61,7 +61,7 @@ else
 fi
 
 while true; do
-    read -p "Do you want to compile and install tmux 1.9a? (y/n) " shouldInstallTmux
+    read -e -p "Do you want to compile and install tmux 1.9a? (y/n) " -i 'n' shouldInstallTmux
     echo ""
     case $shouldInstallTmux in
         [Yy]* ) installTmux; break;;
