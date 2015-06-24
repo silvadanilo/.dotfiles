@@ -84,7 +84,7 @@ fi
 echo -e '# # Cloning .dotfiles repository...'
 cd ~
 ##TODO:! check if .dotfiles already exists and ask confirmation to remove it
-rm -fr .dotfiles
+rm -fr ~/.dotfiles
 git clone https://github.com/silvadanilo/.dotfiles.git
 
 # create dotfiles_old in homedir
@@ -100,7 +100,7 @@ echo "...done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file ~/$olddir/
+    mv ~/$file $olddir/ >/dev/null 2>&1
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
 done
