@@ -83,6 +83,8 @@ fi
 # # clone .dotfiles project
 echo -e '# # Cloning .dotfiles repository...'
 cd ~
+##TODO:! check if .dotfiles already exists and ask confirmation to remove it
+rm -fr .dotfiles
 git clone https://github.com/silvadanilo/.dotfiles.git
 
 # create dotfiles_old in homedir
