@@ -43,7 +43,7 @@ while true; do
     echo ""
     case $shouldInstallVim in
         [Yy]* ) installVim; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -64,7 +64,7 @@ while true; do
     echo ""
     case $shouldInstallTmux in
         [Yy]* ) installTmux; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
