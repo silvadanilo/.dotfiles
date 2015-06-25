@@ -85,6 +85,3 @@ echo -e "${LGREEN}...Done${Z}\n"
 echo -e "${GREEN}#######\nDONE...\n#######${Z}\n"
 
 echo -e "${GREEN}# Remember to edit sample files like:${Z} ${LGREEN}.gitconfig.local${Z}"
-echo -e "${GREEN}# To install vim 7.4 launch:${Z} ${LGREEN}/bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-vim-7.4.sh)${Z}\n"
-echo -e "${GREEN}# To install tmux 1.9a launch:${Z} ${LGREEN}/bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-tmux-1.9a.sh)${Z}\n"
-echo -e "${GREEN}# To install vimpeppers launch:${Z} ${LGREEN}curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh${Z}\n"
