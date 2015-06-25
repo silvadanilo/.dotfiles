@@ -1,121 +1,90 @@
-#!/usr/bin/env bash
-########## Variables
-
+#!/usr/bin/env /bin/bash
+#################### Variables
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-# files=".bashrc .vimrc .vim"       # list of files/folders to symlink in homedir
-files=".bash_aliases .tmux.conf .fonts .gitconfig .vimrc.local .vimrc.plugins.local"       # list of files/folders to symlink in homedir
+files=".bash_aliases .tmux.conf .fonts .gitconfig .gitconfig.local .vimrc.local .vimrc.plugins.local" # list of files/folders to symlink in homedir
+##############################
 
-##########
+######################## Colors
+export WHITE="\e[1;37m"
+export LGRAY="\e[0;37m"
+export GRAY="\e[1;30m"
+export BLACK="\e[0;30m"
+export RED="\e[0;31m"
+export LRED="\e[1;31m"
+export GREEN="\e[0;32m"
+export LGREEN="\e[1;32m"
+export YELLOW="\e[0;33m"
+export BLUE="\e[0;34m"
+export LBLUE="\e[1;34m"
+export PURPLE="\e[0;35m"
+export PINK="\e[1;35m"
+export CYAN="\e[0;36m"
+export LCYAN="\e[1;36m"
+export Z="\e[0m"
+##############################
 
 echo '#######################'
-echo '# dot files installer #'
+echo -e "# ${GREEN}dot files installer${Z} #"
 echo '#######################'
+echo ''
 
-function installVim() {
-    echo -e '\e[33m# #Installing Vim 7.4 ....\e[0m'
-    curl https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-vim-7.4.sh -L -o - > /tmp/install-vim-7.4.sh
-    bash /tmp/install-vim-7.4.sh
-    echo -e '\e[33m# # Vim 7.4 is installed\e[0m'
-}
-
-function installTmux() {
-    echo -e '\e[33m# #Installing Tmux 1.9a ....\e[0m'
-    curl https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-tmux-1.9a.sh -L -o - > /tmp/install-tmux-1.9a.sh
-    bash /tmp/install-tmux-1.9a.sh
-    echo -e '\e[33m# # Tmux 1.9a is installed\e[0m'
-}
-
-# # TODO:!!! Check curl
-echo '# # CHECKING INSTALLED VERSION OF CURL'
-
-# # Install Vim 7.4
-# is vim installed?
-echo '# # CHECKING INSTALLED VIM VERSION...'
-vim --version >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-    echo -e '\e[32mVim is installed\e[0m and is version is: "\e[33m' `vim --version | head -n 1` '\e[0m"'
-else
-    echo -e '\e[31mVim is not installed\e[0m'
-fi
-
-while true; do
-    read -e -p "Do you want to compile and install vim 7.4 ? (y/n) " -i 'n' shouldInstallVim
-    echo ""
-    case $shouldInstallVim in
-        [Yy]* ) installVim; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
-
-
-# # Install Tmux 1.9a
-# is vim installed?
-echo '# # CHECKING INSTALLED Tmux VERSION...'
-tmux -V >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-    echo -e '\e[32mTmux is installed\e[0m and is version is: "\e[33m' `tmux -V | head -n 1` '\e[0m"'
-else
-    echo -e '\e[31mTmux is not installed\e[0m'
-fi
-
-while true; do
-    read -e -p "Do you want to compile and install tmux 1.9a? (y/n) " -i 'n' shouldInstallTmux
-    echo ""
-    case $shouldInstallTmux in
-        [Yy]* ) installTmux; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
 
 # # Checking presence of git
-echo -e '# # CHECKING INSTALLED \e[33mGIT\e[0m VERSION...'
+echo -e "# # ${LGREEN}CHECKING${Z} INSTALLED ${YELLOW}GIT${Z} VERSION..."
 git --version >/dev/null 2>&1
 if [ $? -eq 0 ]; then
-    echo -e '\e[32mGit is installed\e[0m and is version is: "\e[33m' `git --version | head -n 1` '\e[0m"'
+    echo -e "${GREEN}Git is installed$Z and is version is: '$YELLOW"`git --version | head -n 1`"$Z'"
+    echo -e "${LGREEN}...Done${Z}\n"
 else
-    echo -e '\e[31mGit is not installed, installing it.....\e[0m'
-    sudo apt-get update && sudo apt-get install git
+    echo -e "${RED}Git is not installed!$Z"
+    echo -e "${RED}git command is mandatory to run this script, install it.$Z"
+    echo -e "(i.e. # sudo apt-get update && sudo apt-get install git)"
+    exit -1;
+fi
+echo ""
+
+cd ~
+
+if [ -e $DIR ]; then
+    ##TODO:! ask confirmation to remove it
+    echo -e "${YELLOW}$dir${Z} is already exists, ${RED}removing it...${Z}"
+    rm -fr $dir
+    echo -e "${LGREEN}...Done${Z}\n"
 fi
 
 # # clone .dotfiles project
-echo -e '# # Cloning .dotfiles repository...'
-cd ~
-##TODO:! check if .dotfiles already exists and ask confirmation to remove it
-rm -fr ~/.dotfiles
-git clone https://github.com/silvadanilo/.dotfiles.git
+echo -e "# ${LGREEN}Cloning${Z} ${YELLOW}silvadanilo/.dotfiles${Z} repository..."
+git clone https://github.com/silvadanilo/.dotfiles.git $dir
+echo -e "${LGREEN}...Done${Z}\n"
 
 # create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
+echo -e "${LGREEN}Creating${Z} ${YELLOW}$olddir${Z} for backup of any existing dotfiles in ~"
 mkdir -p $olddir
-echo "...done"
-
-# change to the dotfiles directory
-echo "Changing to the $dir directory"
-cd $dir
-echo "...done"
+echo -e "${LGREEN}...Done${Z}\n"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file $olddir/ >/dev/null 2>&1
-    echo "Creating symlink to $file in home directory."
+    if [ -e ~/$file ]; then
+        echo -e "${LGREEN}Moving${Z} existing dotfiles $YELLOW$file$Z from $YELLOW~$Z to $YELLOW$olddir$Z ..."
+        mv ~/$file $olddir/ >/dev/null 2>&1
+    fi
+    echo -e "${LGREEN}Creating${Z} symlink to $YELLOW$file$Z in home directory."
     ln -s $dir/$file ~/$file
-done
-
-echo -e '# # Creating a fonts conf symbonlic link...'
-ln -s $dir/.config/fontconfig/conf.d ~/.fonts.conf.d
-
-while true; do
-    read -e -p "Do you want to install vimpeppers? (y/n) " -i 'y' shouldInstallVimpeppers
     echo ""
-    case $shouldInstallVimpeppers in
-        [Yy]* ) curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
 done
 
-# source ~/.bashrc
+echo -e "# ${LGREEN}Creating${Z} a fonts conf symbonlic link..."
+ln -s $dir/.config/fontconfig/conf.d ~/.fonts.conf.d
+echo -e "${LGREEN}...Done${Z}\n"
+
+echo -e "# ${LGREEN}Reload${Z} ${YELLOW}.bashrc${Z} file..."
+source ~/.bashrc
+echo -e "${LGREEN}...Done${Z}\n"
+
+echo -e "${GREEN}#######\nDONE...\n#######${Z}\n"
+
+echo -e "${GREEN}# Remember to edit sample files like:${Z} ${LGREEN}.gitconfig.local${Z}"
+echo -e "${GREEN}# To install vim 7.4 launch:${Z} ${LGREEN}/bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-vim-7.4.sh)${Z}\n"
+echo -e "${GREEN}# To install tmux 1.9a launch:${Z} ${LGREEN}/bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/install-tmux-1.9a.sh)${Z}\n"
+echo -e "${GREEN}# To install vimpeppers launch:${Z} ${LGREEN}curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh${Z}\n"
