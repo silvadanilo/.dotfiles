@@ -2,7 +2,7 @@
 #################### Variables
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-files=".bash_aliases .tmux.conf .fonts .gitconfig .gitconfig.local .vimrc.local .vimrc.plugins.local" # list of files/folders to symlink in homedir
+files=".bash_aliases .tmux.conf .fonts .gitconfig .gitconfig.local .vimrc.local .vimrc.plugins.local .zshrc" # list of files/folders to symlink in homedir
 ##############################
 
 ######################## Colors
