@@ -35,7 +35,17 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-apt-get install -y dialog
+function installDialog() {
+    apt-get install -y dialog < /dev/null || true;
+}
+
+function commandExists() {
+    which "$1" &> /dev/null;
+}
+
+if ! commandExists dialog; then
+    installDialog;
+fi
 
 cmd=(dialog --separate-output --checklist "Select program to install/configure:" 22 76 16)
 options=(1 "dotfiles" off
