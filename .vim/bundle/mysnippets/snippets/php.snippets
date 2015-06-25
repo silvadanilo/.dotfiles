@@ -1,0 +1,70 @@
+snippet class
+	<?php
+	namespace ${1};
+
+	class ${2:`Filename()`}
+	{
+		${3}
+	}
+snippet interface
+    <?php
+	namespace ${1};
+
+	interface ${2:`Filename()`}
+	{
+		${3}
+	}
+snippet construct1
+    private $$1;
+
+    public function __construct($${1:})
+    {
+        $this->$1 = $$1;
+    }
+snippet construct2
+    private $$1;
+    private $$2;
+
+    public function __construct($${1:}, $${2:})
+    {
+        $this->$1 = $$1;
+        $this->$2 = $$2;
+    }
+snippet construct3
+    private $$1;
+    private $$2;
+    private $$3;
+
+    public function __construct($${1:}, $${2:}, $${3:})
+    {
+        $this->$1 = $$1;
+        $this->$2 = $$2;
+        $this->$3 = $$3;
+    }
+snippet dump
+    error_log(var_export($${1:}, true));
+snippet trace
+    error_log(var_export((new \Exception('TRACE'))->getTraceAsString(), true));
+snippet expects
+    $this->${1:}->expects($this->${2:}())
+        ->method('${3:}')
+        ->with(${4:})
+        ->will($this->returnValue(${5:}));
+snippet phpunit
+    <?php
+    namespace ${1};
+
+    class ${2:`Filename()`} extends \PHPUnit_Framework_TestCase
+    {
+        ${3}
+    }
+snippet setUp
+    public function setUp()
+    {
+        ${1:}
+    }
+snippet test
+    public function test...()
+    {
+        ${1:}
+    }

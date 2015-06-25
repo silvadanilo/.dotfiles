@@ -1,8 +1,8 @@
 #!/usr/bin/env /bin/bash
 #################### Variables
-dir=~/.dotfiles                    # dotfiles directory
-olddir=~/.dotfiles_old             # old dotfiles backup directory
-files=".bash_aliases .tmux.conf .fonts .gitconfig .gitconfig.local .vimrc.local .vimrc.plugins.local .zshrc" # list of files/folders to symlink in homedir
+DOTFILE_DIR=~/.dotfiles                    # dotfiles directory
+OLD_DOTFILE_DIR=~/.dotfiles_old             # old dotfiles backup directory
+FILES=".bash_aliases .tmux.conf .fonts .gitconfig .gitconfig.local .vimrc.local .vimrc.plugins.local .zshrc" # list of files/folders to symlink in homedir
 ##############################
 
 ######################## Colors
@@ -46,37 +46,52 @@ echo ""
 
 cd ~
 
-if [ -e $DIR ]; then
+if [ -e $DOTFILE_DIR ]; then
     ##TODO:! ask confirmation to remove it
-    echo -e "${YELLOW}$dir${Z} is already exists, ${RED}removing it...${Z}"
-    rm -fr $dir
+    echo -e "${YELLOW}$DOTFILE_DIR${Z} is already exists, ${RED}removing it...${Z}"
+    rm -fr $DOTFILE_DIR
     echo -e "${LGREEN}...Done${Z}\n"
 fi
 
 # # clone .dotfiles project
 echo -e "# ${LGREEN}Cloning${Z} ${YELLOW}silvadanilo/.dotfiles${Z} repository..."
-git clone https://github.com/silvadanilo/.dotfiles.git $dir
+git clone https://github.com/silvadanilo/.dotfiles.git $DOTFILE_DIR
 echo -e "${LGREEN}...Done${Z}\n"
 
 # create dotfiles_old in homedir
-echo -e "${LGREEN}Creating${Z} ${YELLOW}$olddir${Z} for backup of any existing dotfiles in ~"
-mkdir -p $olddir
+echo -e "${LGREEN}Creating${Z} ${YELLOW}$OLD_DOTFILE_DIR${Z} for backup of any existing dotfiles in ~"
+mkdir -p $OLD_DOTFILE_DIR
 echo -e "${LGREEN}...Done${Z}\n"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
-for file in $files; do
-    if [ -e ~/$file ]; then
-        echo -e "${LGREEN}Moving${Z} existing dotfiles $YELLOW$file$Z from $YELLOW~$Z to $YELLOW$olddir$Z ..."
-        mv ~/$file $olddir/ >/dev/null 2>&1
+for FILE in $FILES; do
+    if [ -e ~/$FILE ]; then
+        echo -e "${LGREEN}Moving${Z} existing dotfiles $YELLOW$file$Z from $YELLOW~$Z to $YELLOW$OLD_DOTFILE_DIR$Z ..."
+        mv ~/$FILE $OLD_DOTFILE_DIR/ >/dev/null 2>&1
     fi
-    echo -e "${LGREEN}Creating${Z} symlink to $YELLOW$file$Z in home directory."
-    ln -s $dir/$file ~/$file
+    echo -e "${LGREEN}Creating${Z} symlink to $YELLOW$FILE$Z in home directory."
+    ln -s $DOTFILE_DIR/$FILE ~/$FILE
     echo ""
 done
 
 echo -e "# ${LGREEN}Creating${Z} a fonts conf symbonlic link..."
-ln -s $dir/.config/fontconfig/conf.d ~/.fonts.conf.d
+if [ ! -e ~/.fonts.conf.d ]; then
+    ln -s $DOTFILE_DIR/.config/fontconfig/conf.d ~/.fonts.conf.d
+fi
 echo -e "${LGREEN}...Done${Z}\n"
+
+
+echo -e "# ${LGREEN}Creating${Z} symlink for vim bundles..."
+if [ ! -e ~/.vim/bundle ]; then
+    mkdir -p ~/.vim/bundle
+fi
+for DIR in `ls $DOTFILE_DIR/.vim/bundle`; do
+    echo -e "${LGREEN}Creating${Z} symlink to $YELLOW$DIR$Z in ~/.vim/bundle directory."
+    ln -s $DOTFILE_DIR/.vim/bundle/$DIR ~/.vim/bundle
+    echo "...done\n"
+done
+echo -e "${LGREEN}...Done${Z}\n"
+
 
 echo -e "# ${LGREEN}Reload${Z} ${YELLOW}.bashrc${Z} file..."
 source ~/.bashrc
