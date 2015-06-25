@@ -41,9 +41,10 @@ cmd=(dialog --separate-output --checklist "Select program to install/configure:"
 options=(1 "dotfiles" off
          2 "Vim 7.4" off
          3 "Ctags" off
-         4 "Tmux 1.9a" off
-         5 "Evolution" off
-         6 "Shell utilities (zsh, curl, git, etc)" off
+         4 "Vimpeppers" off
+         5 "Tmux 1.9a" off
+         6 "Evolution" off
+         7 "Shell utilities (zsh, curl, git, etc)" off
 )
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -60,21 +61,26 @@ do
             echo -e "${LGREEN}...done${Z}\n"
             ;;
         3)
-            echo -e "${LGREEN}Installing${Z} ${YELLOW}Vim ctags${Z}"
+            echo -e "${LGREEN}Installing${Z} ${YELLOW}Ctags${Z}"
             installCtags;
             echo -e "${LGREEN}...done${Z}\n"
             ;;
         4)
+            echo -e "${LGREEN}Installing${Z} ${YELLOW}Vimpeppers${Z}"
+            curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh
+            echo -e "${LGREEN}...done${Z}\n"
+            ;;
+        5)
             echo -e "${LGREEN}Installing${Z} ${YELLOW}Tmux 1.9a${Z}"
             /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmux-1.9a.sh)
             echo -e "${LGREEN}...done${Z}\n"
             ;;
-        5)
+        6)
             echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
             apt-get install -y evolution
             echo -e "${LGREEN}...done${Z}\n"
             ;;
-        6)
+        7)
             echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
             apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses
             echo -e "${LGREEN}...done${Z}\n"
