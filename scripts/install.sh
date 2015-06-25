@@ -53,6 +53,7 @@ do
     case $choice in
         1)
             echo -e "${LGREEN}Configuring${Z} ${YELLOW}dotfiles${Z}"
+            /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-dotfiles.sh)
             echo -e "${LGREEN}...done${Z}\n"
             ;;
         2)
