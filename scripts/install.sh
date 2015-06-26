@@ -35,66 +35,72 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-function installDialog() {
+function install_dialog() {
     apt-get install -y dialog < /dev/null || true;
 }
 
-function commandExists() {
-    which "$1" &> /dev/null;
+command_exists() {
+    command -v "$@" > /dev/null 2>&1
 }
 
-if ! commandExists dialog; then
-    installDialog;
-fi
+do_install() {
+    if ! command_exists dialog; then
+        install_dialog;
+    fi
 
-cmd=(dialog --separate-output --checklist "Select program to install/configure:" 22 76 16)
-options=(1 "dotfiles" off
-         2 "Vim 7.4" off
-         3 "Ctags" off
-         4 "Vimpeppers" off
-         5 "Tmux 1.9a" off
-         6 "Evolution" off
-         7 "Shell utilities (zsh, curl, git, etc)" off
-)
-choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-clear
-for choice in $choices
-do
-    case $choice in
-        1)
-            echo -e "${LGREEN}Configuring${Z} ${YELLOW}dotfiles${Z}"
-            /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-dotfiles.sh)
-            echo -e "${LGREEN}...done${Z}\n"
-            ;;
-        2)
-            echo -e "${LGREEN}Installing${Z} ${YELLOW}Vim 7.4${Z}"
-            /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-vim-7.4.sh)
-            echo -e "${LGREEN}...done${Z}\n"
-            ;;
-        3)
-            echo -e "${LGREEN}Installing${Z} ${YELLOW}Ctags${Z}"
-            installCtags;
-            echo -e "${LGREEN}...done${Z}\n"
-            ;;
-        4)
-            echo -e "${LGREEN}Installing${Z} ${YELLOW}Vimpeppers${Z}"
-            curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh
-            echo -e "${LGREEN}...done${Z}\n"
-            ;;
-        5)
-            echo -e "${LGREEN}Installing${Z} ${YELLOW}Tmux 1.9a${Z}"
-            /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmux-1.9a.sh)
-            echo -e "${LGREEN}...done${Z}\n"
-            ;;
-        6)
-            echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
-            apt-get install -y evolution
-            echo -e "${LGREEN}...done${Z}\n"
-            ;;
-        7)
-            echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
-            apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses
-            echo -e "${LGREEN}...done${Z}\n"
-            ;;
-    esac
-done
+    cmd=(dialog --separate-output --checklist "Select program to install/configure:" 22 76 16)
+    options=(1 "dotfiles" off
+            2 "Vim 7.4" off
+            3 "Ctags" off
+            4 "Vimpeppers" off
+            5 "Tmux 1.9a" off
+            6 "Evolution" off
+            7 "Shell utilities (zsh, curl, git, etc)" off
+    )
+    choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+    clear
+    for choice in $choices
+    do
+        case $choice in
+            1)
+                echo -e "${LGREEN}Configuring${Z} ${YELLOW}dotfiles${Z}"
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-dotfiles.sh)
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            2)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}Vim 7.4${Z}"
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-vim-7.4.sh)
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            3)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}Ctags${Z}"
+                installCtags;
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            4)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}Vimpeppers${Z}"
+                curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            5)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}Tmux 1.9a${Z}"
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmux-1.9a.sh)
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            6)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
+                apt-get install -y evolution
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            7)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
+                apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+        esac
+    done
+}
+
+# wrapped up in a function so that we have some protection against only getting
+# half the file during "curl | sh"
+do_install
