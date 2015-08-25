@@ -100,3 +100,4 @@ echo -e "${LGREEN}...Done${Z}\n"
 echo -e "${GREEN}#######\nDONE...\n#######${Z}\n"
 
 echo -e "${GREEN}# Remember to edit sample files like:${Z} ${LGREEN}.gitconfig.local${Z}"
+git update-index --assume-unchanged .gitconfig.local
