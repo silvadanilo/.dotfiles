@@ -10,6 +10,7 @@ Plug 'majutsushi/tagbar'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'danro/rename.vim'
 Plug 'jakobwesthoff/argumentrewrap'
+Plug 'vim-scripts/grep.vim'
 
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'craigemery/vim-autotag'
@@ -22,3 +23,4 @@ Plug 'godlygeek/tabular'
 " Plug 'garbas/vim-snipmate'
 
 " Plug 'honza/vim-snippets'
+

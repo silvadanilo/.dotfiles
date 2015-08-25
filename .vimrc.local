@@ -249,3 +249,13 @@ noremap <silent> <Leader>J /{\_[^}{]*}<CR>mo%mpv`o:s/"\s*:\s*"/" => "/g<CR>`o%mp
 
 " rewrap arguments of a function
 noremap <silent> <Leader>n :call argumentrewrap#RewrapArguments()<CR>
+
+" Close buffer
+noremap <leader>c :bd<CR>
+
+" Open current line on GitHub
+noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+
+" grep.vim
+nnoremap <silent> <leader>f :Rgrep<CR>
+let Grep_Default_Options = '-IR'
