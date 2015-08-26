@@ -24,3 +24,6 @@ Plug 'godlygeek/tabular'
 
 " Plug 'honza/vim-snippets'
 
+" Vim-Session
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
