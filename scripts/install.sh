@@ -54,8 +54,9 @@ do_install() {
             3 "Ctags" off
             4 "Vimpeppers" off
             5 "Tmux 1.9a" off
-            6 "Evolution" off
-            7 "Shell utilities (zsh, curl, git, etc)" off
+            6 "Tmuxp" off
+            7 "Evolution" off
+            8 "Shell utilities (zsh, curl, git, etc)" off
     )
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     clear
@@ -88,11 +89,16 @@ do_install() {
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             6)
-                echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
-                apt-get install -y evolution
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}tmuxp${Z}"
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmuxp.sh)
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             7)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}evolution${Z}"
+                apt-get install -y evolution
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            8)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
                 apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses
                 echo -e "${LGREEN}...done${Z}\n"
