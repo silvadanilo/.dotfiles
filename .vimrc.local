@@ -269,3 +269,6 @@ let g:session_autosave = 'no'
 let g:session_autoload = 'no'
 let g:session_autosave_periodic = 1
 let g:session_directory= './.vimsessions'
+
+" Term color
+set term=screen-256color
