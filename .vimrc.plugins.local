@@ -27,3 +27,6 @@ Plug 'godlygeek/tabular'
 " Vim-Session
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
+
+" Vim-airline (base plugin is already on vimpeppers)
+Plug 'vim-airline/vim-airline-themes'
