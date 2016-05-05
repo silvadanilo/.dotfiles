@@ -92,6 +92,9 @@ for DIR in `ls $DOTFILE_DIR/.vim/bundle`; do
 done
 echo -e "${LGREEN}...Done${Z}\n"
 
+echo -e "# ${LGREEN}Installing${Z} vim plugins using vim-plug..."
+vim </dev/tty +PlugInstall +PlugClean +qall
+echo -e "${LGREEN}...Done${Z}\n"
 
 echo -e "# ${LGREEN}Reload${Z} ${YELLOW}.bashrc${Z} file..."
 source ~/.bashrc
