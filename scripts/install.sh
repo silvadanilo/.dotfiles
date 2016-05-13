@@ -53,7 +53,7 @@ do_install() {
             2 "Vim 7.4" off
             3 "Ctags" off
             4 "Vimpeppers" off
-            5 "Tmux 1.9a" off
+            5 "Tmux 2.2" off
             6 "Tmuxp" off
             7 "Evolution" off
             8 "Shell utilities (zsh, curl, git, etc)" off
@@ -84,8 +84,8 @@ do_install() {
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             5)
-                echo -e "${LGREEN}Installing${Z} ${YELLOW}Tmux 1.9a${Z}"
-                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmux-1.9a.sh)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}Tmux 2.2${Z}"
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmux-2.2.sh)
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             6)
