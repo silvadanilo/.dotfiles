@@ -30,3 +30,6 @@ Plug 'xolox/vim-session'
 
 " Vim-airline (base plugin is already on vimpeppers)
 Plug 'vim-airline/vim-airline-themes'
+
+" History of changes
+Plug 'vim-scripts/Gundo'
