@@ -33,3 +33,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " History of changes
 Plug 'vim-scripts/Gundo'
+
+" balanced bracket, etc
+Plug 'vim-scripts/paredit.vim'
