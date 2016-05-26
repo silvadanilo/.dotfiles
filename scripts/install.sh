@@ -29,14 +29,14 @@ function installCtags() {
     sudo make install
 }
 
-if [ "$(id -u)" != "0" ]; then
-   echo -e "${RED}This script must be run as root${Z}" 1>&2
-   echo -e "${RED}exiting...${Z}" 1>&2
-   exit 1
-fi
+#if [ "$(id -u)" != "0" ]; then
+#   echo -e "${RED}This script must be run as root${Z}" 1>&2
+#   echo -e "${RED}exiting...${Z}" 1>&2
+#   exit 1
+#fi
 
 function install_dialog() {
-    apt-get install -y dialog < /dev/null || true;
+    sudo apt-get install -y dialog < /dev/null || true;
 }
 
 command_exists() {
@@ -95,12 +95,12 @@ do_install() {
                 ;;
             7)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}evolution${Z}"
-                apt-get install -y evolution
+                sudo apt-get install -y evolution
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             8)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
-                apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses
+                sudo apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
         esac
