@@ -100,7 +100,7 @@ do_install() {
                 ;;
             8)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
-                sudo apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses
+                sudo apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses htop
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
         esac
