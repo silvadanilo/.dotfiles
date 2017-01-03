@@ -276,6 +276,9 @@ set term=screen-256color
 " set limit of openable tab to 50
 set tabpagemax=50
 
+" Map F2 to the list of buffers plus switch tu a number
+map <F2> :ls<CR>:b<Space>
+
 function! CurrentNamespace()
     let path = split(expand("%:p"), "/")
     let pathInverted = copy(path)
