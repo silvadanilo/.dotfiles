@@ -1,16 +1,16 @@
-snippet class
+snippet nclass
 	<?php
-	namespace ${1};
+	namespace `CurrentNamespace()`;
 
-	class ${2:`Filename()`}
+	class `Filename()`
 	{
 		${3}
 	}
-snippet interface
+snippet ninterface
     <?php
-	namespace ${1};
+	namespace `CurrentNamespace()`;
 
-	interface ${2:`Filename()`}
+	interface `Filename()`
 	{
 		${3}
 	}
@@ -47,11 +47,17 @@ snippet dumpclass
     error_log(var_export(get_class($${1:}), true));
 snippet dumpl
     error_log(__LINE__);
+snippet __line__
+    error_log(__LINE__);
 snippet dumpm
     error_log(__METHOD__);
+snippet __method__
+    error_log(__METHOD__);
+snippet whereami
+    error_log(__CLASS__ . '::' . __METHOD__ . ', line: ' . __LINE__);
 snippet trace
     error_log(var_export((new \Exception('TRACE'))->getTraceAsString(), true));
-snippet expects
+snippet stub
     $this->${1:}->expects($this->${2:}())
         ->method('${3:}')
         ->with(${4:})
@@ -74,4 +80,14 @@ snippet test
     public function testXXX()
     {
         ${1:}
+    }
+snippet puf
+    public function ${1}(${2})
+    {
+        ${3}
+    }
+snippet prf
+    private function ${1}(${2})
+    {
+        ${3}
     }
