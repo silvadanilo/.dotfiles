@@ -279,6 +279,9 @@ set tabpagemax=50
 " Map F2 to the list of buffers plus switch tu a number
 map <F2> :ls<CR>:b<Space>
 
+" Map ,F to copy the relative filepath on the clipboard
+noremap <leader>F :let @+ = expand("%")<CR>
+
 function! CurrentNamespace()
     let path = split(expand("%:p"), "/")
     let pathInverted = copy(path)
