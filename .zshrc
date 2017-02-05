@@ -58,6 +58,7 @@ alias behat='vendor/bin/behat'
 alias phplog='vim /var/log/php.log'
 alias psrecruiter='ps -fe | grep -i recruiter'
 alias generatetag='ctags-exuberant -R --PHP-kinds=+cf --fields=+aimS --languages=php ' #path
+alias onebip='ssh -Y -i /dati/progetti/onebip/provisioning2/site/onebip/files/dev/personal/myId_rsa root@192.168.56.120'
 
 xmodmap -e 'clear Lock'
 xmodmap -e 'keycode 0x42=Escape'
