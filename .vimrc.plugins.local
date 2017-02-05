@@ -36,3 +36,6 @@ Plug 'vim-scripts/Gundo'
 
 " balanced bracket, etc
 Plug 'vim-scripts/paredit.vim'
+
+" Rust
+Plug 'rust-lang/rust.vim'
