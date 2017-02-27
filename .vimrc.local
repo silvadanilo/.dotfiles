@@ -265,10 +265,12 @@ nnoremap <leader>so :OpenSession
 nnoremap <leader>ss :SaveSession
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
-let g:session_autosave_periodic = 1
-let g:session_directory= './.vimsessions'
+let g:session_autosave=0
+let g:session_autosave_periodic=1
+let g:session_autosave_silent=1
+let g:session_directory='./.vimsessions'
+let g:session_autoload =1
+let g:session_default_to_last=1
 
 " Term color
 set term=screen-256color
