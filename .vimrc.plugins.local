@@ -11,6 +11,7 @@ Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'danro/rename.vim'
 Plug 'jakobwesthoff/argumentrewrap'
 Plug 'vim-scripts/grep.vim'
+Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'craigemery/vim-autotag'
