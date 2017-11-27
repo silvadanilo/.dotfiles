@@ -51,12 +51,13 @@ do_install() {
     cmd=(dialog --separate-output --checklist "Select program to install/configure:" 22 76 16)
     options=(1 "dotfiles" off
             2 "Vim 7.4" off
-            3 "Ctags" off
-            4 "Vimpeppers" off
-            5 "Tmux 2.2" off
-            6 "Tmuxp" off
-            7 "Evolution" off
-            8 "Shell utilities (zsh, curl, git, etc)" off
+            3 "Vim 8.0" off
+            4 "Ctags" off
+            5 "Vimpeppers" off
+            6 "Tmux 2.2" off
+            7 "Tmuxp" off
+            8 "Evolution" off
+            9 "Shell utilities (zsh, curl, git, etc)" off
     )
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     clear
@@ -74,31 +75,36 @@ do_install() {
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             3)
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}Vim 8.0${Z}"
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-vim-8.0.sh)
+                echo -e "${LGREEN}...done${Z}\n"
+                ;;
+            4)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}Ctags${Z}"
                 installCtags;
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
-            4)
+            5)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}Vimpeppers${Z}"
                 curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
-            5)
+            6)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}Tmux 2.2${Z}"
                 /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmux-2.2.sh)
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
-            6)
+            7)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}tmuxp${Z}"
                 /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-tmuxp.sh)
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
-            7)
+            8)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}evolution${Z}"
                 sudo apt-get install -y evolution
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
-            8)
+            9)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}shell utilites${Z}"
                 sudo apt-get install -y git zsh curl wget lua5.1 liblua5.1-dev wicd-curses htop
                 echo -e "${LGREEN}...done${Z}\n"
