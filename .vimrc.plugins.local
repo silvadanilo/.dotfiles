@@ -12,6 +12,7 @@ Plug 'danro/rename.vim'
 Plug 'jakobwesthoff/argumentrewrap'
 Plug 'vim-scripts/grep.vim'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'craigemery/vim-autotag'
