@@ -235,10 +235,11 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 set iskeyword-=-
 
 " vim-php-namespace
-inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
-noremap <Leader>e :call PhpExpandClass()<CR>
+inoremap <Leader>q <C-O>:call PhpExpandClass()<CR>
+noremap <Leader>q :call PhpExpandClass()<CR>
 inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
 noremap <Leader>u :call PhpInsertUse()<CR>
+
 noremap <Leader>y "+y
 
 " with the following map in normal mode <Leader>a will replace array(...) with [...]
@@ -300,3 +301,7 @@ function! CurrentNamespace()
     let namespace = join(path[rootFolder+1:-2], "\\")
     return namespace
 endfunction
+
+" NERD Tree
+nnoremap <silent> <Leader>e :NERDTreeFind<CR>
+let NERDTreeQuitOnOpen = 1
