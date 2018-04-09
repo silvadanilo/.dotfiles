@@ -1,4 +1,10 @@
 #!/bin/bash
+function sudo ()
+{
+    [[ $EUID = 0 ]] || set -- command sudo "$@"
+    "$@"
+}
+
 sudo apt-get install -y libevent-dev libncurses-dev pkg-config
 
 cd /tmp

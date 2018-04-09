@@ -18,6 +18,12 @@ export LCYAN="\e[1;36m"
 export Z="\e[0m"
 ##############################
 
+function sudo ()
+{
+    [[ $EUID = 0 ]] || set -- command sudo "$@"
+    "$@"
+}
+
 function installCtags() {
     # https://github.com/shawncplus/phpcomplete.vim/wiki/Patched-ctags
     cd /tmp

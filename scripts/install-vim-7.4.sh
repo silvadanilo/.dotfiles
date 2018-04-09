@@ -1,4 +1,10 @@
 #!/bin/bash
+function sudo ()
+{
+    [[ $EUID = 0 ]] || set -- command sudo "$@"
+    "$@"
+}
+
 function installVim() {
     sudo apt-get install -y lua5.1 liblua5.1-dev libncurses5-dev libgnome2-dev \
         libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev \
