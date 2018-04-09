@@ -483,6 +483,9 @@ let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "#### END NEOCOMPLETE
 
+"Gutentag
+let g:gutentags_ctags_exclude = [".git", ".work"]
+
 " Local vimrc ================================================================
 
 if filereadable(expand('~/.vimrc.local'))
