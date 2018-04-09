@@ -1,9 +1,9 @@
 #!/usr/bin/env /bin/bash
 
 #################### Variables
-DOTFILE_DIR=~/.dotfiles                    # dotfiles directory
-OLD_DOTFILE_DIR=~/.dotfiles_old             # old dotfiles backup directory
-FILES=".vimrc .vimrc.plugins" # list of files/folders to symlink in homedir
+DOTFILE_DIR=~/.dotfiles         # dotfiles directory
+OLD_DOTFILE_DIR=~/.dotfiles_old # old dotfiles backup directory
+FILES=".vimrc .vimrc.plugins"   # list of files/folders to symlink in homedir
 ##############################
 
 ######################## Colors

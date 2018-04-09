@@ -4,66 +4,10 @@ set nocompatible
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-signify'
-Plug 'ervandew/supertab'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'matchit.zip'
-Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-eunuch'
-Plug 'scrooloose/syntastic'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'Julian/vim-textobj-variable-segment'
-
-" History of changes
-Plug 'vim-scripts/Gundo'
-
-Plug 'altercation/vim-colors-solarized'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'mattn/gist-vim'
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'majutsushi/tagbar'
-Plug 'MarcWeber/vim-addon-local-vimrc'
-Plug 'danro/rename.vim'
-Plug 'jakobwesthoff/argumentrewrap'
-Plug 'vim-scripts/grep.vim'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'terryma/vim-multiple-cursors'
-
-Plug 'arnaud-lb/vim-php-namespace'
-Plug 'craigemery/vim-autotag'
-
-" Plug 'spf13/PIV'
-Plug 'godlygeek/tabular'
-
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-" Plug 'garbas/vim-snipmate'
-
-" Plug 'honza/vim-snippets'
-
-" Vim-Session
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-
-
-" balanced bracket, etc
-Plug 'vim-scripts/paredit.vim'
-
-" Rust
-Plug 'rust-lang/rust.vim'
+" Local plugins
+if filereadable(expand('~/.vimrc.plugins'))
+    source ~/.vimrc.plugins
+endif
 
 " Local plugins
 if filereadable(expand('~/.vimrc.plugins.local'))
