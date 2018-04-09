@@ -2,7 +2,7 @@
 #################### Variables
 DOTFILE_DIR=~/.dotfiles                    # dotfiles directory
 OLD_DOTFILE_DIR=~/.dotfiles_old             # old dotfiles backup directory
-FILES=".bash_aliases .tmux.conf .fonts .gitconfig .gitconfig.local .vimrc.local .vimrc.plugins.local .zshrc" # list of files/folders to symlink in homedir
+FILES=".bash_aliases .tmux.conf .fonts .gitconfig .gitconfig.local .zshrc" # list of files/folders to symlink in homedir
 ##############################
 
 ######################## Colors
@@ -78,22 +78,6 @@ echo -e "# ${LGREEN}Creating${Z} a fonts conf symbonlic link..."
 if [ ! -e ~/.fonts.conf.d ]; then
     ln -s $DOTFILE_DIR/.config/fontconfig/conf.d ~/.fonts.conf.d
 fi
-echo -e "${LGREEN}...Done${Z}\n"
-
-
-echo -e "# ${LGREEN}Creating${Z} symlink for vim bundles..."
-if [ ! -e ~/.vim/bundle ]; then
-    mkdir -p ~/.vim/bundle
-fi
-for DIR in `ls $DOTFILE_DIR/.vim/bundle`; do
-    echo -e "${LGREEN}Creating${Z} symlink to $YELLOW$DIR$Z in ~/.vim/bundle directory."
-    ln -s $DOTFILE_DIR/.vim/bundle/$DIR ~/.vim/bundle
-    echo "...done\n"
-done
-echo -e "${LGREEN}...Done${Z}\n"
-
-echo -e "# ${LGREEN}Installing${Z} vim plugins using vim-plug..."
-vim </dev/tty +PlugInstall +PlugClean +qall
 echo -e "${LGREEN}...Done${Z}\n"
 
 echo -e "# ${LGREEN}Reload${Z} ${YELLOW}.bashrc${Z} file..."

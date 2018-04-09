@@ -53,7 +53,7 @@ do_install() {
             2 "Vim 7.4" off
             3 "Vim 8.0" off
             4 "Ctags" off
-            5 "Vimpeppers" off
+            5 "Vim configuration" off
             6 "Tmux 2.2" off
             7 "Tmuxp" off
             8 "Evolution" off
@@ -85,8 +85,8 @@ do_install() {
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             5)
-                echo -e "${LGREEN}Installing${Z} ${YELLOW}Vimpeppers${Z}"
-                curl https://raw.github.com/gcapizzi/vimpeppers/master/bootstrap.sh -L -o - | sh
+                echo -e "${LGREEN}Installing${Z} ${YELLOW}Vim configuration${Z}"
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-vim-configuration.sh)
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             6)
