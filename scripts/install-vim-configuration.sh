@@ -1,5 +1,4 @@
 #!/usr/bin/env /bin/bash
-
 #################### Variables
 DOTFILE_DIR=~/.dotfiles         # dotfiles directory
 OLD_DOTFILE_DIR=~/.dotfiles_old # old dotfiles backup directory
@@ -25,7 +24,36 @@ export LCYAN="\e[1;36m"
 export Z="\e[0m"
 ##############################
 
-echo "\n### Bootstrap started ###"
+echo '#######################'
+echo -e "# ${GREEN}vim configuration files installer${Z} #"
+echo '#######################'
+echo ''
+
+# # Checking presence of git
+echo -e "# # ${LGREEN}CHECKING${Z} INSTALLED ${YELLOW}GIT${Z} VERSION..."
+git --version >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}Git is installed$Z and is version is: '$YELLOW"`git --version | head -n 1`"$Z'"
+    echo -e "${LGREEN}...Done${Z}\n"
+else
+    echo -e "${RED}Git is not installed!$Z"
+    echo -e "${RED}git command is mandatory to run this script, install it.$Z"
+    echo -e "(i.e. # sudo apt-get update && sudo apt-get install git)"
+    exit -1;
+fi
+echo ""
+
+if [ -e $DOTFILE_DIR ]; then
+    ##TODO:! ask confirmation to remove it
+    echo -e "${YELLOW}$DOTFILE_DIR${Z} is already exists, ${RED}removing it...${Z}"
+    rm -fr $DOTFILE_DIR
+    echo -e "${LGREEN}...Done${Z}\n"
+fi
+
+# create dotfiles_old in homedir
+echo -e "${LGREEN}Creating${Z} ${YELLOW}$OLD_DOTFILE_DIR${Z} for backup of any existing dotfiles in ~"
+mkdir -p $OLD_DOTFILE_DIR
+echo -e "${LGREEN}...Done${Z}\n"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for FILE in $FILES; do
