@@ -38,6 +38,7 @@
     ls = ls-files
     prom = pull --rebase origin master
     showhist = "!f() { git show `git rev-list --max-count=1 --all -- $1`^:$1; }; f"
+    url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
 [mergetool "diffmerge"]
     cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
     trustExitCode = true
