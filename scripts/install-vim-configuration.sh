@@ -38,17 +38,16 @@ for FILE in $FILES; do
     echo ""
 done
 
-
-# if [ -e $endpath/.git ]; then
-#     echo "\n> update repo\n"
-#     cd $endpath && git pull
-# else
-#     echo "\n> clone repo\n"
-#     git clone http://github.com/gcapizzi/vimpeppers.git $endpath
-# fi
+if [ -e $DOTFILE_DIR/.git ]; then
+    echo "\n> update repo\n"
+    cd $DOTFILE_DIR && git pull
+else
+    echo "\n> clone repo\n"
+    git clone http://github.com/silvadanilo/.dotfiles.git $DOTFILE_DIR
+fi
 
 # echo "\n> set up symlink\n"
-# ln -sf $endpath/vimrc $HOME/.vimrc
+# ln -sf $DOTFILE_DIR/vimrc $HOME/.vimrc
 
 echo "> create Vim folders"
 mkdir -p $HOME/.vim/tmp/undo
