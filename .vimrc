@@ -86,6 +86,7 @@ set sidescrolloff=15
 set sidescroll=1
 
 " Convenience mappings =======================================================
+set complete+=k
 
 " Make Y behave
 nnoremap Y y$
@@ -100,9 +101,6 @@ nnoremap Q gqip
 " Easy tab navigation
 map <S-H> gT
 map <S-L> gt
-
-" Substitute
-nnoremap <leader>s :%s//<left>
 
 " Clear search highlighting
 map <C-l> :nohlsearch<CR>
@@ -142,11 +140,11 @@ if has('autocmd')
   autocmd BufRead *.html,*.htm set tabstop=2 shiftwidth=2 softtabstop=2 nowrap
   autocmd BufRead *.txt set tabstop=2 shiftwidth=2 softtabstop=2
   autocmd BufRead *.php set tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd BufRead *.php set dictionary=~/.vim/bundle/vim-php-dictionary/dict/PHP.dict
 
   augroup END
 
 endif " has('autocmd')
-
 
 " Colors
 " =====================================================================
@@ -233,7 +231,7 @@ nmap ,cl :let @+=expand("%:p")<CR>
 map <C-\> <C-^>
 
 " substitute selected text
-noremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Save with ctrl+k
 :nnoremap <C-k> :w<CR>
@@ -254,8 +252,38 @@ noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=lin
 " vim-php-namespace
 inoremap <Leader>q <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>q :call PhpExpandClass()<CR>
-inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
-noremap <Leader>u :call PhpInsertUse()<CR>
+autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+let g:php_namespace_sort_after_insert = 1
+" function! IPhpInsertUse()
+"     call PhpInsertUse()
+"     call feedkeys('a',  'n')
+" endfunction
+" autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+" autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+" phpactor
+" Include use statement
+nmap <Leader>u :call phpactor#UseAdd()<CR>
+
+" Invoke the context menu
+nmap <Leader>mm :call phpactor#ContextMenu()<CR>
+
+" Goto definition of class or class member under the cursor
+nmap <Leader>o :call phpactor#GotoDefinition()<CR>
+
+" Transform the classes in the current file
+nmap <Leader>tt :call phpactor#Transform()<CR>
+
+" Generate a new class (replacing the current file)
+nmap <Leader>cc :call phpactor#ClassNew()<CR>
+
+" Extract method from selection
+nnoremap <silent><Leader>nn :<C-U>call phpactor#Navigate()<CR>
+
+" Extract method from selection
+vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+
 
 " with the following map in normal mode <Leader>a will replace array(...) with [...]
 nnoremap <silent> <Leader>A /\<array\>\s*(<CR>:nohl<CR>dwmp%r]`pr[
@@ -342,26 +370,42 @@ map <C-b> :CtrlPBuffer<CR>
 let g:signify_vcs_list = ['git']
 
 " Airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
+"
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+" let g:airline_left_alt_sep='❯'
+" let g:airline_right_alt_sep='❮'
+" let g:airline_symbols.branch = '⚡'
+" let g:airline_theme='kolor'
+" let g:airline_powerline_fonts = 1
+" let g:airline_left_sep='▶'
+" let g:airline_right_sep='◀'
+" let g:airline_left_alt_sep='❯'
+" let g:airline_right_alt_sep='❮'
+" let g:airline_symbols.branch = '⚡'
 
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_left_alt_sep='❯'
-let g:airline_right_alt_sep='❮'
-let g:airline_symbols.branch = '⚡'
-let g:airline_theme='kolor'
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep='▶'
-let g:airline_right_sep='◀'
-let g:airline_left_alt_sep='❯'
-let g:airline_right_alt_sep='❮'
-let g:airline_symbols.branch = '⚡'
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cwd'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'cwd': 'CwdForLightline'
+      \ },
+      \ }
 
+function! CwdForLightline()
+    return expand('%:p:h')
+endfunction
 
 " TagBar
-nnoremap <silent> <leader>tt :TagbarOpen fj<CR>
+nnoremap <silent> <leader>@ :TagbarToggle<CR>
 
 " If using go please install the gotags program using the following
 " go install github.com/jstemmer/gotags
@@ -395,93 +439,8 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/mysnippets/snippets'
 imap <C-j>     <Plug>(neosnippet_expand_or_jump)
 nmap <C-j>     i<Plug>(neosnippet_expand_or_jump)
 
-" Neocomplete
-"#### START NEOCOMPLETE
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-" let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"#### END NEOCOMPLETE
+inoremap <expr><\CR> pumvisible() ? "\<c-y>\<cr>" : "\<CR>"
+autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 "Gutentag
 let g:gutentags_cache_dir = '~/.vim/gutentags'

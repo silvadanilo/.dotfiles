@@ -1,8 +1,9 @@
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-signify'
 Plug 'ervandew/supertab'
 Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'Shougo/denite.nvim'
 Plug 'tmhedberg/matchit'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
@@ -12,6 +13,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'scrooloose/syntastic'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -24,10 +26,10 @@ Plug 'vim-scripts/Gundo'
 Plug 'altercation/vim-colors-solarized'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'mattn/gist-vim'
-Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'shawncplus/phpcomplete.vim'
+" Plug 'shawncplus/phpcomplete.vim'
 Plug 'majutsushi/tagbar'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'danro/rename.vim'
@@ -61,3 +63,21 @@ Plug 'rust-lang/rust.vim'
 
 "Ctags
 Plug 'ludovicchabant/vim-gutentags'
+
+" Statusbar
+Plug 'itchyny/lightline.vim'
+
+" DA ANALIZZARE!!
+" php autocompletion engine and tools
+" Plug 'StanAngeloff/php.vim', {'for': 'php'}
+" Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
+Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
+" refactoring options
+" Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
+if !has('nvim')
+Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/ncm-phpactor',  {'for': 'php'}
+Plug '2072/php-indenting-for-vim', {'for': 'php'}
