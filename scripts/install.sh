@@ -56,7 +56,7 @@ do_install() {
 
     cmd=(dialog --separate-output --checklist "Select program to install/configure:" 22 76 16)
     options=(1 "dotfiles" off
-            2 "Vim 7.4" off
+            2 "Neovim" off
             3 "Vim 8.0" off
             4 "Ctags" off
             5 "Vim configuration" off
@@ -77,7 +77,7 @@ do_install() {
                 ;;
             2)
                 echo -e "${LGREEN}Installing${Z} ${YELLOW}Vim 7.4${Z}"
-                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-vim-7.4.sh)
+                /bin/bash < <(curl -s https://raw.githubusercontent.com/silvadanilo/.dotfiles/master/scripts/install-neovim.sh)
                 echo -e "${LGREEN}...done${Z}\n"
                 ;;
             3)
