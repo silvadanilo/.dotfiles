@@ -450,8 +450,15 @@ let g:gutentags_ctags_exclude = [".git", ".work", '*.css', '*.html', '*.js', '*.
                             \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
                             \ '*var/cache*', '*var/log*']
 
-" Local vimrc ================================================================
 
+" Sort a paragraph
+function! s:SortLinesOpFunc(...)
+    '[,']sort
+endfunction,
+nnoremap <silent> <leader>z :<C-u>set operatorfunc=<SID>SortLinesOpFunc<CR>g@
+
+
+" Local vimrc ================================================================
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
