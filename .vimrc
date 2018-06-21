@@ -468,3 +468,11 @@ nnoremap <silent> <leader>d mg :call PhpDocSingle()<CR>`g
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
+
+" Drop Vdebug settings at the end of the file "
+let g:vdebug_options = {
+\ 'break_on_open': 1,
+\ 'path_maps': {'/var/www': '/home/danilo/sviluppo/heaven-provisioning/projects'},
+\ 'port': '9000',
+\ 'watch_window_style': 'compact'
+\ }
