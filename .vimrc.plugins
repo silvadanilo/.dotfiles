@@ -21,7 +21,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'Julian/vim-textobj-variable-segment'
 
 " History of changes
-Plug 'vim-scripts/Gundo'
+Plug 'mbbill/undotree'
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'Lokaltog/vim-easymotion'
@@ -41,7 +41,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'craigemery/vim-autotag'
 
-" Plug 'spf13/PIV'
 Plug 'godlygeek/tabular'
 
 " Plug 'MarcWeber/vim-addon-mw-utils'
@@ -73,7 +72,6 @@ Plug 'itchyny/lightline.vim'
 " Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
 Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
 " refactoring options
-" Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
 if !has('nvim')
 Plug 'roxma/vim-hug-neovim-rpc'
 endif
@@ -81,3 +79,7 @@ Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/ncm-phpactor',  {'for': 'php'}
 Plug '2072/php-indenting-for-vim', {'for': 'php'}
+
+" Plug 'tobyS/vmustache'
+" Plug 'tobyS/pdv'
+Plug 'Rican7/php-doc-modded'
