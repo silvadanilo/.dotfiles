@@ -238,7 +238,11 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 :inoremap <C-k> <Esc>:w<CR>
 :vnoremap <C-k> <Esc>:w<CR>
 
+" shortcut to copy on the system clipboard
 noremap <Leader>y "+y
+
+" shortcut to create directory of the current file
+nnoremap <Leader>k :call mkdir(expand("%:p:h"), "p")<CR>
 
 " Close buffer
 noremap <silent> <leader>c :bd<CR>
@@ -457,6 +461,8 @@ function! s:SortLinesOpFunc(...)
 endfunction,
 nnoremap <silent> <leader>z :<C-u>set operatorfunc=<SID>SortLinesOpFunc<CR>g@
 
+" Pdv (php doc generator)
+nnoremap <silent> <leader>d mg :call PhpDocSingle()<CR>`g
 
 " Local vimrc ================================================================
 if filereadable(expand('~/.vimrc.local'))
