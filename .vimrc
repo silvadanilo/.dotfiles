@@ -256,8 +256,8 @@ noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=lin
 " vim-php-namespace
 inoremap <Leader>q <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>q :call PhpExpandClass()<CR>
-autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+autocmd FileType php inoremap <Leader>su <Esc>:call PhpSortUse()<CR>
+autocmd FileType php noremap <Leader>su :call PhpSortUse()<CR>
 let g:php_namespace_sort_after_insert = 1
 " function! IPhpInsertUse()
 "     call PhpInsertUse()
