@@ -69,7 +69,7 @@ Plug 'itchyny/lightline.vim'
 " DA ANALIZZARE!!
 " php autocompletion engine and tools
 " Plug 'StanAngeloff/php.vim', {'for': 'php'}
-" Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
+Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
 Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
 " refactoring options
 if !has('nvim')
@@ -79,6 +79,7 @@ Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/ncm-phpactor',  {'for': 'php'}
 Plug '2072/php-indenting-for-vim', {'for': 'php'}
+Plug 'alvan/vim-php-manual', {'for': 'php'}
 
 " Plug 'tobyS/vmustache'
 " Plug 'tobyS/pdv'

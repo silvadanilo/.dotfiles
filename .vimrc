@@ -462,7 +462,29 @@ endfunction,
 nnoremap <silent> <leader>z :<C-u>set operatorfunc=<SID>SortLinesOpFunc<CR>g@
 
 " Pdv (php doc generator)
+let g:pdv_cfg_Author = 'Danilo Silva <danilo.silva@qwentes.it>'
+let g:pdv_cfg_autoEndFunction=0
+let g:pdv_cfg_autoEndClass=0
+let g:pdv_cfg_php4always=0
+let g:pdv_cfg_annotation_License=0
+let g:pdv_cfg_annotation_Copyright=0
+let g:pdv_cfg_annotation_Package=0
+let g:pdv_cfg_annotation_Version=0
 nnoremap <silent> <leader>d mg :call PhpDocSingle()<CR>`g
+nnoremap <silent> <leader>h mg :call UpdatePhpDocIfExists()<CR>`g
+function! UpdatePhpDocIfExists()
+    normal! k
+    if getline('.') =~ '/'
+        normal! V%d
+    else
+        normal! j
+    endif
+    call PhpDocSingle()
+    normal! k^%k$
+    if getline('.') =~ ';'
+        exe "normal! $svoid"
+    endif
+endfunction
 
 " Local vimrc ================================================================
 if filereadable(expand('~/.vimrc.local'))
