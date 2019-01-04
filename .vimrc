@@ -295,6 +295,9 @@ nnoremap <silent> <Leader>A /\<array\>\s*(<CR>:nohl<CR>dwmp%r]`pr[
 " transform a json object into a php array
 noremap <silent> <Leader>J /{\_[^}{]*}<CR>mo%mpv`o:s/"\s*:\s*"/" => "/g<CR>`o%mpr]`or[`ov`p:s/",[^\n$]/",\r/g<CR>mp`o:s/"/\r"/<CR>`ov`p=:nohl<CR>
 
+" transform snake case var into camel case
+nnoremap _ f_x~
+
 " rewrap arguments of a function
 noremap <silent> <Leader>n :call argumentrewrap#RewrapArguments()<CR>
 
@@ -368,6 +371,7 @@ let g:ctrlp_custom_ignore = {
 
 map <C-t> :CtrlPTag<CR>
 map <C-b> :CtrlPBuffer<CR>
+map <C-A-m> :CtrlPMRUFiles<CR>
 
 
 " Signify
