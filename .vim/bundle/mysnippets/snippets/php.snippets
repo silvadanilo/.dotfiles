@@ -1,18 +1,24 @@
+snippet namespace
+    namespace `PhpNamespaceGet()`;
 snippet nclass
 	<?php
-	namespace `CurrentNamespace()`;
+    declare(strict_types=1);
+
+    namespace `PhpNamespaceGet()`;
 
 	class `Filename()`
 	{
-		${3}
+		${0}
 	}
 snippet ninterface
     <?php
-	namespace `CurrentNamespace()`;
+    declare(strict_types=1);
+
+	namespace `PhpNamespaceGet()`;
 
 	interface `Filename()`
 	{
-		${3}
+		${0}
 	}
 snippet construct1
     private $$1;
@@ -65,7 +71,9 @@ snippet stub
     ;
 snippet phpunit
     <?php
-    namespace ${1};
+    declare(strict_types=1);
+
+    namespace `PhpNamespaceGet()`;
 
     class ${2:`Filename()`} extends \PHPUnit_Framework_TestCase
     {
@@ -77,9 +85,9 @@ snippet setUp
         ${1:}
     }
 snippet test
-    public function testXXX()
+    public function test${1:}()
     {
-        ${1:}
+        ${2:}
     }
 snippet puf
     public function ${1}(${2})
