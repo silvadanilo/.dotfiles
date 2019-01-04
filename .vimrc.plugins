@@ -39,6 +39,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'arnaud-lb/vim-php-namespace'
+Plug 'dantleech/vim-phpnamespace'
 Plug 'craigemery/vim-autotag'
 
 Plug 'godlygeek/tabular'
