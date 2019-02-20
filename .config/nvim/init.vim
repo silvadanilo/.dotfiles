@@ -388,6 +388,13 @@ map <C-t> :CtrlPTag<CR>
 map <C-b> :CtrlPBuffer<CR>
 map <C-A-m> :CtrlPMRUFiles<CR>
 
+if executable('rg')
+  let g:ctrlp_user_command = 'rg --files %s'
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_working_path_mode = 'ra'
+  let g:ctrlp_switch_buffer = 'et'
+endif
+
 """ TagBar
 nnoremap <silent> <leader>@ :TagbarOpenAutoClose<CR>
 nnoremap <silent> <leader><leader>@ :TagbarToggle<CR>
@@ -422,6 +429,10 @@ let Grep_Default_Options = '-IR'
 """ Ack
 map <leader>aa :Ack!<space>
 map <leader>a :Ack! <cword><cr>
+nnoremap <silent> <Leader>r :Rg <C-R><C-W><CR>
+" if executable('rg')
+"     let g:ackprg = 'rg -S --no-heading --vimgrep'
+" endif
 
 """ session management
 nnoremap <leader>so :OpenSession
