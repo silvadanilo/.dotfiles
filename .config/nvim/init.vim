@@ -102,8 +102,11 @@ nnoremap Y y$
 " noremap j gj
 " noremap k gk
 
+" Easy buffer close
+nnoremap Q :lclose<CR>:cclose<CR>:bd<CR>
+
 " Easy paragraph formatting
-nnoremap Q gqip
+nnoremap <leader>Q gqip
 
 " Easy tab navigation
 map <S-H> gT
@@ -232,9 +235,11 @@ if has('autocmd')
 endif " has('autocmd')
 
 """ UtilSnip
+set runtimepath+=~/.config/nvim/plugged/mysnippets
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 let g:ultisnips_php_scalar_types = 1 " PHP7
 
 """ NCM2
@@ -457,23 +462,38 @@ let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cwd'] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cwd'] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'inactive': {
+      \   'left': [ [ 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ] ]
+      \ },
+      \ 'component': {
+      \   'lineinfo': '%3l:%-2c',
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'cwd': 'CwdForLightline'
       \ },
+      \ 'component_function_visible_condition': {
+      \   'cwd': 'get(b:,"lightline_filename","")!=#""',
+      \   'filename': 'get(b:,"lightline_filename","")!=#""',
+      \   'mode': '1',
+      \ },
       \ }
 
 function! CwdForLightline()
     return expand('%:p:h')
+    " return 'xx'
 endfunction
 
 
 """ Gutentag
+let g:gutentags_trace = 0
 let g:gutentags_cache_dir = '~/.vim/gutentags'
 let g:gutentags_ctags_exclude = [".git", ".work", '*.css', '*.html', '*.js', '*.json', '*.xml',
-                            \ '*.phar', '*.ini', '*.rst', '*.md',
+                            \ '*.phar', '*.ini', '*.rst',
                             \ '*vendor/*/test*', '*vendor/*/Test*',
                             \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
                             \ '*var/cache*', '*var/log*']
