@@ -1,0 +1,71 @@
+snippet dump "dump a var on error_log"
+error_log(var_export($${1:}, true));
+endsnippet
+
+snippet dumpclass "dump the class of an object on error log"
+error_log(var_export(get_class($${1:}), true));
+endsnippet
+
+snippet whereami "print the current class method and line on error log"
+error_log(__CLASS__ . '::' . __METHOD__ . ', line: ' . __LINE__);
+endsnippet
+
+snippet trace "print the current stack trace on error log"
+error_log(var_export((new \Exception('TRACE'))->getTraceAsString(), true));
+endsnippet
+
+snippet stub
+    $this->${1:}->expects($this->${2:once}())
+        ->method('${3:}')
+        ->with(${4:})
+        ->will($this->returnValue(${5:}))
+    ;
+endsnippet
+
+snippet namespace
+namespace `!v PhpNamespaceGet()`;
+endsnippet
+
+snippet nclass
+<?php
+declare(strict_types=1);
+
+namespace `!v PhpNamespaceGet()`;
+
+/**
+ * Class $1
+ */
+class ${1:`!p snip.rv=snip.basename`}
+{
+    ${0}
+}
+endsnippet
+
+snippet ninterface
+<?php
+declare(strict_types=1);
+
+namespace `!v PhpNamespaceGet()`;
+
+/**
+ * Interface $1
+ */
+interface ${1:`!p snip.rv=snip.basename`}
+{
+    ${0}
+}
+endsnippet
+
+snippet xx "__construct()" b
+private $2 ${1/, /\n    private /g}\;
+
+/**
+ * @param$2 ${1/, /\n     * \@param /g}
+ */
+public function __construct(${1:$dependencies})
+{${1/\w* ?\$(\w+)(, )*/\n        $this->$1 = $$1;/g}
+}
+$0
+endsnippet
+
+# :vim:ft=snippets:
