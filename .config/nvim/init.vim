@@ -103,7 +103,8 @@ nnoremap Y y$
 " noremap k gk
 
 " Easy buffer close
-nnoremap Q :lclose<CR>:cclose<CR>:bd<CR>
+" nnoremap Q :lclose<CR>:cclose<CR>:bd<CR>
+nnoremap Q :bd<CR>
 
 " Easy paragraph formatting
 nnoremap <leader>Q gqip
@@ -208,6 +209,12 @@ function! s:SortLinesOpFunc(...)
     '[,']sort
 endfunction,
 nnoremap <silent> <leader>z :<C-u>set operatorfunc=<SID>SortLinesOpFunc<CR>g@
+
+" quickfix always at full width
+" au FileType qf resize 5<Bar>wincmd J
+
+" skip quickfix windows when cycling through splits
+:nnoremap <silent> <C-w><C-w> <C-w><C-w>:while &buftype ==# 'quickfix'<Bar>wincmd w<Bar>endwhile<CR>
 """"""" END PERSONAL CONFIGURATION
 
 " Autocommands ===============================================================
@@ -264,16 +271,27 @@ let g:ale_lint_on_enter = 0
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = 1
 let g:ale_keep_list_window_open=0
-let g:ale_set_quickfix=0
+let g:ale_set_quickfix=1
 let g:ale_list_window_size = 5
 let g:ale_php_phpcbf_standard='PSR2'
 let g:ale_php_phpcs_standard='phpcs.xml.dist'
-let g:ale_php_phpmd_ruleset='phpmd.xml'
+" let g:ale_php_phpmd_ruleset='phpmd.xml'
+let g:ale_php_phpmd_ruleset='cleancode,codesize,controversial,design,unusedcode'
 let g:ale_fixers = {
   \ '*': ['remove_trailing_lines', 'trim_whitespace'],
   \ 'php': ['phpcbf', 'php_cs_fixer', 'remove_trailing_lines', 'trim_whitespace'],
   \}
 let g:ale_fix_on_save = 1
+
+augroup CloseLoclistWindowGroup
+    autocmd!
+    autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
+
+augroup CloseQuickfixWindowGroup
+    autocmd!
+    autocmd QuitPre * if empty(&buftype) | cclose | endif
+augroup END
 
 """ PHPACTOR
 let g:phpactor_executable = '~/.config/nvim/plugged/phpactor/bin/phpactor'
