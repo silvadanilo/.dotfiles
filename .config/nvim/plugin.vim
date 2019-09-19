@@ -71,6 +71,9 @@ Plug '2072/php-indenting-for-vim', {'for': 'php'}
 
 Plug 'Rican7/php-doc-modded', {'for': 'php'}
 
+" ELIXIR RELATED PLUGINS
+Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+
 " JAVASCRIPT RELATED PLUGINS
 Plug 'leafgarland/typescript-vim' " Typescript
 
