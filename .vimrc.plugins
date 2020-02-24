@@ -72,15 +72,18 @@ Plug 'itchyny/lightline.vim'
 " Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
 Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
+Plug 'phpstan/vim-phpstan', {'for': 'php'}
+
 " refactoring options
 if !has('nvim')
 Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/ncm-phpactor',  {'for': 'php'}
+Plug 'roxma/nvim-yarp'
 Plug '2072/php-indenting-for-vim', {'for': 'php'}
 Plug 'alvan/vim-php-manual', {'for': 'php'}
+"
 
 " Plug 'tobyS/vmustache'
 " Plug 'tobyS/pdv'

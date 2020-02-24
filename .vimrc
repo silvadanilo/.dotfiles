@@ -266,6 +266,12 @@ let g:php_namespace_sort_after_insert = 1
 " autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 " autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
+" php-cs-fixer
+let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 1                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 1                    " Return the output of command if 1, else an inline information.
+
 " phpactor
 " Include use statement
 nmap <Leader>u :call phpactor#UseAdd()<CR>
@@ -435,9 +441,21 @@ let g:tagbar_type_go = {
 set nofoldenable                " disable code folding
 let g:DisableAutoPHPFolding = 1 " disable PIV's folding
 
-" let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:syntastic_php_checkers=['php', 'phpmd']
-let g:syntastic_auto_loc_list=1
+let g:syntastic_php_checkers=['php', 'phpcs']
+" let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd', 'phpstan']
+let g:syntastic_php_phpcs_exec = '/usr/local/bin/phpcs.phar'
+" let g:syntastic_php_phpcs_args = '--standard=psr2'
+let g:syntastic_php_phpmd_exec = '/usr/local/bin/phpmd.phar'
+let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
+
+let g:syntastic_php_phpstan_exec = '/usr/local/bin/phpstan'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 5
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+
 set colorcolumn=80,120
 set nospell
 
