@@ -215,6 +215,12 @@ nnoremap <silent> <leader>z :<C-u>set operatorfunc=<SID>SortLinesOpFunc<CR>g@
 
 " skip quickfix windows when cycling through splits
 :nnoremap <silent> <C-w><C-w> <C-w><C-w>:while &buftype ==# 'quickfix'<Bar>wincmd w<Bar>endwhile<CR>
+
+" comment like phpstorm
+if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
+  nmap <C-_> <Plug>CommentaryLine
+  xmap <C-_>  <Plug>Commentary
+endif
 """"""" END PERSONAL CONFIGURATION
 
 " Autocommands ===============================================================
@@ -275,13 +281,16 @@ let g:ale_set_quickfix=1
 let g:ale_list_window_size = 5
 let g:ale_php_phpcbf_standard='PSR2'
 let g:ale_php_phpcs_standard='phpcs.xml.dist'
-" let g:ale_php_phpmd_ruleset='phpmd.xml'
-let g:ale_php_phpmd_ruleset='cleancode,codesize,controversial,design,unusedcode'
+let g:ale_php_phpmd_ruleset='phpmd.xml'
+" let g:ale_php_phpmd_ruleset='cleancode,codesize,controversial,design,unusedcode'
+let g:ale_linters = {'php': ['php', 'langserver', 'phan']}
 let g:ale_fixers = {
   \ '*': ['remove_trailing_lines', 'trim_whitespace'],
   \ 'php': ['phpcbf', 'php_cs_fixer', 'remove_trailing_lines', 'trim_whitespace'],
   \}
 let g:ale_fix_on_save = 1
+let g:ale_php_cs_fixer_executable = '/usr/local/bin/php-cs-fixer.phar'
+let g:ale_php_phan_executable = '/usr/local/bin/phan.phar'
 
 augroup CloseLoclistWindowGroup
     autocmd!
@@ -548,7 +557,7 @@ let g:gutentags_ctags_exclude = [".git", ".work", '*.css', '*.html', '*.js', '*.
 "set nofoldenable                " disable code folding
 "let g:DisableAutoPHPFolding = 1 " disable PIV's folding
 
-" let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_checkers=['php']
 "" let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd', 'phpstan']
 "let g:syntastic_php_phpcs_exec = '/usr/local/bin/phpcs.phar'
 "" let g:syntastic_php_phpcs_args = '--standard=psr2'
