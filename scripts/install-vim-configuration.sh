@@ -100,5 +100,6 @@ done
 echo -e "${LGREEN}...Done${Z}\n"
 
 echo -e "# ${LGREEN}Installing${Z} vim plugins using vim-plug..."
-vim </dev/tty +PlugInstall +PlugClean +qall
+#vim </dev/tty +PlugInstall +PlugClean +qall
+vim +'PlugInstall --sync' +qa
 echo -e "${LGREEN}...Done${Z}\n"
