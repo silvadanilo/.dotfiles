@@ -39,8 +39,8 @@ if has('persistent_undo')
     set undofile
 endif
 
-set backupdir=~/.vim/tmp/backup
-set directory=~/.vim/tmp/swap
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
 set backup
 
 " Indentation ================================================================
