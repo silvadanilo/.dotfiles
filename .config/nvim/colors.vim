@@ -1,7 +1,7 @@
 syntax on
 set background=dark
 set t_Co=256
-if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+if filereadable(expand("~/.config/nvim/plugged/vim-colors-solarized/colors/solarized.vim"))
     let g:solarized_termcolors=256
     colorscheme solarized
 endif
