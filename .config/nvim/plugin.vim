@@ -104,5 +104,8 @@ Plug 'gabrielelana/vim-markdown'
 " Yaml RELATED PLUGINS
 Plug 'avakhov/vim-yaml'
 
+" Ansible RELATED PLUGINS
+Plug 'pearofducks/ansible-vim'
+
 " SHOULD BE THE LAST ONE
 Plug 'ryanoasis/vim-devicons'
