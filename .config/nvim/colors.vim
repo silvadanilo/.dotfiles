@@ -6,6 +6,11 @@ if filereadable(expand("~/.config/nvim/plugged/vim-colors-solarized/colors/solar
     colorscheme solarized
 endif
 
+if filereadable(expand("~/.config/nvim/plugged/gruvbox/colors/gruvbox.vim"))
+    let g:gruvbox_contrast_dark='hard'
+    colorscheme gruvbox
+endif
+
 " Term color
 if !has('nvim')
 set term=screen-256color

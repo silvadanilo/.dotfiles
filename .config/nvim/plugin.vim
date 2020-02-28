@@ -24,6 +24,7 @@ Plug 'SirVer/ultisnips' | Plug 'phux/vim-snippets'
 "Plug 'ncm2/ncm2-path'
 
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim' " Statusbar
 Plug 'vim-scripts/vim-orgmode'
 
