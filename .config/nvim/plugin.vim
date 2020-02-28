@@ -1,21 +1,36 @@
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim'
+endif
+
+
+Plug 'hecal3/vim-leader-guide'
+Plug 'mhinz/vim-startify'
+Plug 'raimondi/delimitMate'
+Plug 'sheerun/vim-polyglot'
+Plug 'kana/vim-arpeggio'
+Plug 'pelodelfuego/vim-swoop'
+Plug 'tpope/vim-abolish'
+
 
 Plug 'SirVer/ultisnips' | Plug 'phux/vim-snippets'
 
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
+"Plug 'ncm2/ncm2'
+"Plug 'ncm2/ncm2-ultisnips'
+"Plug 'ncm2/ncm2-bufword'
+"Plug 'ncm2/ncm2-path'
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim' " Statusbar
 Plug 'vim-scripts/vim-orgmode'
 
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ludovicchabant/vim-gutentags' "Ctags
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 " Plug 'jremmen/vim-ripgrep'
@@ -60,8 +75,11 @@ Plug 'w0rp/ale' " write less messy code (syntax checker)
 Plug 'vim-scripts/paredit.vim' " balanced bracket, etc
 
 " PHP RELATED PLUGINS
-Plug 'phpactor/phpactor', { 'do': ':call phpactor#Update()', 'for': 'php'}
-Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
+"Plug 'phpactor/phpactor', { 'do': ':call phpactor#Update()', 'for': 'php'}
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+Plug 'kristijanhusak/deoplete-phpactor'
+"Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
+"Plug 'phpstan/vim-phpstan'
 
 Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'arnaud-lb/vim-php-namespace', {'for': 'php'}
