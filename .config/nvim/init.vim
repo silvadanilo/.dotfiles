@@ -67,9 +67,12 @@ endif
 """""""""""""""""""
 " AUTOCOMPLETION
 """""""""""""""""""
-if filereadable(expand('~/.config/nvim/deoplete.vim'))
-    source ~/.config/nvim/deoplete.vim
+if filereadable(expand('~/.config/nvim/coc.vim'))
+    source ~/.config/nvim/coc.vim
 endif
+" if filereadable(expand('~/.config/nvim/deoplete.vim'))
+"     source ~/.config/nvim/deoplete.vim
+" endif
 
 " if filereadable(expand('~/.config/nvim/ncm2.vim'))
 "     source ~/.config/nvim/ncm2.vim

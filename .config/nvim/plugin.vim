@@ -1,11 +1,12 @@
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'Shougo/deoplete.nvim'
+  " Plug 'Shougo/deoplete.nvim'
 endif
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'hecal3/vim-leader-guide'
 Plug 'mhinz/vim-startify'
@@ -25,6 +26,7 @@ Plug 'SirVer/ultisnips' | Plug 'phux/vim-snippets'
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim' " Statusbar
 Plug 'vim-scripts/vim-orgmode'
 
