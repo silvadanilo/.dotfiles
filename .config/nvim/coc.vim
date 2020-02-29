@@ -1,3 +1,5 @@
+let g:coc_global_extensions = ['coc-phpls']
+
 " TextEdit might fail if hidden is not set.
 set hidden
 
