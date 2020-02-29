@@ -9,3 +9,11 @@ function kp() {
 if [ -f ~/.bash_aliases.local ]; then
     . ~/.bash_aliases.local
 fi
+
+if [ -f ~/.dotfiles/.scripts/forgit.plugin.zsh ]; then
+    . ~/.dotfiles/.scripts/forgit.plugin.zsh
+fi
+
+if [ -f ~/.fzf/bin/fzf ]; then
+    export PATH=$PATH:~/.fzf/bin/
+fi
