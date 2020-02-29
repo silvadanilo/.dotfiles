@@ -126,6 +126,10 @@ if filereadable(expand('~/.config/nvim/lightline.vim'))
     source ~/.config/nvim/lightline.vim
 endif
 
+if filereadable(expand('~/.config/nvim/startify.vim'))
+    source ~/.config/nvim/startify.vim
+endif
+
 """ Signify
 let g:signify_vcs_list = ['git']
 
@@ -152,6 +156,13 @@ if filereadable(expand('~/.config/nvim/utilsnip.vim'))
     source ~/.config/nvim/utilsnip.vim
 endif
 
+""" echodoc
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+highlight link EchoDocFloat Pmenu
+
+""" swoop
+let g:swoopUseDefaultKeyMap = 0
 
 """ session management
 nnoremap <leader>so :OpenSession

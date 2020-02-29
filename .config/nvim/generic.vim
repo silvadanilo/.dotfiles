@@ -64,9 +64,9 @@ set wildmode=list:longest
 set wildmenu
 
 " cycle through completion entries with tab/shift+tab
-inoremap <expr> <TAB> pumvisible() ? "\<c-n>" : "\<TAB>"
-inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<TAB>"
-
+inoremap <expr> <TAB> pumvisible() ? "\<c-n>" : "\<Tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
 
 " Scrolling ==================================================================
 set scrolloff=3

@@ -74,6 +74,7 @@ Plug 'xolox/vim-session'
 " CODE RELATED PLUGINS
 Plug 'w0rp/ale' " write less messy code (syntax checker)
 Plug 'vim-scripts/paredit.vim' " balanced bracket, etc
+Plug 'Shougo/echodoc.vim' " show documentation on completion
 
 " PHP RELATED PLUGINS
 "Plug 'phpactor/phpactor', { 'do': ':call phpactor#Update()', 'for': 'php'}

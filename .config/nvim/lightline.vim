@@ -1,6 +1,8 @@
+"'colorscheme': 'powerline'
+"'colorscheme': 'solarized'
 """ Lightline
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cwd'] ],
