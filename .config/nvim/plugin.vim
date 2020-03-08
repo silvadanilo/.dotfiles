@@ -32,6 +32,7 @@ Plug 'vim-scripts/vim-orgmode'
 
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'ludovicchabant/vim-gutentags' "Ctags
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --bin' }
 Plug 'junegunn/fzf.vim'
