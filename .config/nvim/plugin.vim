@@ -8,7 +8,8 @@ endif
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'hecal3/vim-leader-guide'
+" Plug 'hecal3/vim-leader-guide'
+" Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
@@ -78,6 +79,8 @@ Plug 'xolox/vim-session'
 Plug 'w0rp/ale' " write less messy code (syntax checker)
 Plug 'vim-scripts/paredit.vim' " balanced bracket, etc
 Plug 'Shougo/echodoc.vim' " show documentation on completion
+Plug 'machakann/vim-swap' " swap arguments
+" Plug 'pechorin/any-jump.vim'
 
 " PHP RELATED PLUGINS
 "Plug 'phpactor/phpactor', { 'do': ':call phpactor#Update()', 'for': 'php'}

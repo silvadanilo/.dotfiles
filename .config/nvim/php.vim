@@ -3,6 +3,7 @@ let g:phpactor_executable = '~/.config/nvim/plugged/phpactor/bin/phpactor'
 
 " Include use statement
 nmap <Leader>u :call phpactor#UseAdd()<CR>
+nmap <f3> :call phpactor#UseAdd()<CR>
 
 " Invoke the context menu
 nmap <Leader>mm :call phpactor#ContextMenu()<CR>
