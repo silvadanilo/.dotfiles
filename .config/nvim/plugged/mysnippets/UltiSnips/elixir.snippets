@@ -1,0 +1,288 @@
+############### COMMON #################
+snippet defl "defines a new function" !b
+def ${1:name}(${2:params}), do: $0
+endsnippet
+
+snippet defpl "defines a new private function" !b
+defp ${1:name}(${2:params}), do: $0
+endsnippet
+
+snippet defc "defines a behavior callback" !b
+defcallback ${1:name}(${0:params})
+endsnippet
+
+snippet defm "defines a macro" !b
+defmacro ${1:name}(${2:params}) do
+  $0
+end
+endsnippet
+
+snippet qt "define a quote block" !b
+quote do
+  $0
+end
+endsnippet
+
+snippet qtl "defines a quote block inline" !b
+quote do: $0
+endsnippet
+
+snippet insp "inspect an expression result" !b
+IO.puts """
+#############################
+#{inspect $0}
+#############################
+"""
+endsnippet
+
+snippet ap "inspect an expression result with apex" !b
+IO.puts """
+#############################
+#{Apex.ap $0}
+#############################
+"""
+endsnippet
+
+snippet fn "insert an anonymous function" !i
+fn(${1:args}) -> ${0} end
+endsnippet
+
+snippet & "insert an anonymous function short syntax" !i
+&($1)$0
+endsnippet
+
+snippet # "insert a string interpolation" !i
+#{${1}}$0
+endsnippet
+
+snippet | "insert a pipe operator" !i
+|>
+endsnippet
+
+snippet |i "insert a pipe to IO.inspect" !i
+|> IO.inspect
+endsnippet
+
+snippet using "insert using macro" !b
+defmacro __using__(opts) do
+  $0
+end
+endsnippet
+
+snippet before_compile "insert before_compile macro" !b
+defmacro __before_compile__(env) do
+  $0
+end
+endsnippet
+
+snippet % "Insert a map with symbols as keys" !i
+%{${1:key}: ${2:value}}$0
+endsnippet
+
+snippet %b "Insert a map with binaries as keys" !i
+%{"${1:key}" => ${2:value}}$0
+endsnippet
+
+snippet ok "Insert ok tuple" !i
+{:ok, ${1:value}}$0
+endsnippet
+
+snippet err "Insert error tuple" !i
+{:error, ${1:value}}$0
+endsnippet
+
+############# LIVEVIEW ##################
+snippet mount "LiveView mount function"
+def mount(_params, _session, socket) do
+  socket = assign(socket, ${1:key}: ${2:value})
+
+  {:ok, socket}
+end
+endsnippet
+
+snippet render "LiveView render function"
+def render(assigns) do
+  ~L"""
+  ${0}
+  """
+end
+endsnippet
+
+snippet lhe "LiveView handle_event function"
+def handle_event(${1:event}, _params, socket) do
+  socket = assign(socket, ${2:key}: ${3:value})
+
+  {:noreply, socket}
+end
+endsnippet
+
+snippet lvm "LiveView module"
+defmodule ${1:Namespace}.${2:Module}Live do
+  use ${1///g}, :live_view
+
+  ${3}
+end
+endsnippet
+
+snippet lhi "LiveView handle_info function"
+def handle_info(${1:message}, socket) do
+  socket = assign(socket, ${2:key}: ${3:value})
+  {:noreply, socket}
+end
+endsnippet
+
+snippet lhp "LiveView handle_params function"
+def handle_params(%{"${1:key}" => ${2:param}}, _url, socket) do
+  {:noreply, socket}
+end
+endsnippet
+
+snippet lt "LiveView inline template"
+~L"""
+${0}
+"""
+endsnippet
+
+####################### HTML #######################
+snippet h1 "EEx h1"
+<h1>${0}</h1>
+endsnippet
+
+snippet div "EEx div with class"
+<div class="${1}">
+  ${0}
+</div>
+
+endsnippet
+
+snippet divi "EEx div with id"
+<div id="${1}">
+  ${0}
+</div>
+
+endsnippet
+
+snippet span "EEx span with class"
+<span class="${1}">
+  ${0}
+</span>
+
+endsnippet
+
+snippet spans "EEx span with width"
+<span style="${1}">
+  ${0}
+</span>
+
+endsnippet
+
+snippet form "EEx form"
+<form>
+  ${0}
+</form>
+
+endsnippet
+
+snippet button "EEx button"
+<button>
+  ${0}
+</button>
+endsnippet
+
+snippet img "EEx img"
+<img src="${1}">
+endsnippet
+
+snippet data "EEx datalist"
+<datalist id="${1}">
+  ${0}
+</datalist>
+
+endsnippet
+
+snippet input "EEx text input"
+<input type="text" name="${1}" value="${2}"
+       placeholder="${3}" />
+endsnippet
+
+snippet hidden "EEx hidden input"
+<input type="hidden" name="${1}" value="${2}" />
+endsnippet
+
+snippet checkbox "EEx checkbox input"
+<input type="checkbox" id="${1}" name="${2}" value="${3}"/>
+endsnippet
+
+snippet select "EEx select input"
+<select name="${1}">
+</select>
+endsnippet
+
+snippet option "EEx option"
+<option value="${1}">${0}</option>
+endsnippet
+
+snippet label "EEx label"
+<label for="${1}">${2}</label>
+endsnippet
+
+snippet a "EEx anchor tag"
+<a href="#">${1}</a>
+endsnippet
+
+snippet et "<%= %> render block"
+<%= $1 %>
+endsnippet
+
+snippet eend "<% end %> end tag"
+<% end %>$1
+endsnippet
+
+snippet efor "EEx for"
+<%= for ${1:item} <- @$1s do %>
+  $2
+<% end %>
+endsnippet
+
+snippet efori "EEx for comprehension with items"
+<%= for ${1:item} <- @$1s do %>
+  $2
+<% end %>
+endsnippet
+
+snippet eifa "EEx if for attribute"
+<%= if $1, do: "{$1}" %>
+endsnippet
+
+snippet eif "EEx if"
+<%= if $1 do %>
+  $2
+<% end %>
+endsnippet
+
+snippet eife "EEx if else"
+<%= if $1 do %>
+  $2
+<% else %>
+  $3
+<% end %>
+endsnippet
+
+snippet eelse "EEx else"
+<% else %>
+endsnippet
+
+snippet econd "EEx cond"
+<%= cond do %>
+  <% $1 -> %>
+    $2
+  <% true -> %>
+    $3
+<% end %>
+endsnippet
+
+snippet eunless "EEx  unless"
+<%= unless $1 do %>
+  $2
+<% end %>
+endsnippet
