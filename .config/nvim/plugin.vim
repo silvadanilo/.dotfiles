@@ -101,6 +101,8 @@ Plug 'Rican7/php-doc-modded', {'for': 'php'}
 " ELIXIR RELATED PLUGINS
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
+" Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+" Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
 
 " JAVASCRIPT RELATED PLUGINS
 Plug 'leafgarland/typescript-vim' " Typescript
