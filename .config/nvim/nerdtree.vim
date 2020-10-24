@@ -5,5 +5,6 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeChDirMode = 2
-let g:NERDTreeWinSize = 40
 let NERDTreeQuitOnOpen = 1
+let g:NERDTreeWinSize = 40
+let g:NERDTreeShowHidden=1
