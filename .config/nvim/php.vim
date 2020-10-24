@@ -14,9 +14,8 @@ nmap <Leader>nn :call phpactor#Navigate()<CR>
 
 " Goto definition of class or class member under the cursor
 nmap <Leader>o :call phpactor#GotoDefinitionTab()<CR>
-nnoremap gd :call phpactor#GotoDefinitionTab()<CR>
-nnoremap gr :call phpactor#FindReferences()<CR>
-nnoremap gp :call phpactor#Navigate()<CR>
+" autocmd FileType php nnoremap gr :call phpactor#FindReferences()<CR>
+autocmd FileType php nnoremap gp :call phpactor#Navigate()<CR>
 
 " Show brief information about the symbol under the cursor
 nmap <Leader>K :call phpactor#Hover()<CR>

@@ -81,6 +81,7 @@ Plug 'vim-scripts/paredit.vim' " balanced bracket, etc
 Plug 'Shougo/echodoc.vim' " show documentation on completion
 Plug 'machakann/vim-swap' " swap arguments
 " Plug 'pechorin/any-jump.vim'
+" Plug 'jadercorrea/smartest.vim'
 
 " PHP RELATED PLUGINS
 "Plug 'phpactor/phpactor', { 'do': ':call phpactor#Update()', 'for': 'php'}
@@ -99,6 +100,7 @@ Plug 'Rican7/php-doc-modded', {'for': 'php'}
 
 " ELIXIR RELATED PLUGINS
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
 " JAVASCRIPT RELATED PLUGINS
 Plug 'leafgarland/typescript-vim' " Typescript

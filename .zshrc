@@ -135,3 +135,5 @@ function git_custom_status() {
 
 # for tmux: export 256color
 [ -n "$TMUX" ] && export TERM=screen-256color
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/bitcomplete bit

@@ -186,6 +186,9 @@ if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
   nmap <C-_> <Plug>CommentaryLine
   xmap <C-_>  <Plug>Commentary
 endif
+
+" reindent the entire file
+map <F7> gg=G<C-o>
 """"""" END PERSONAL CONFIGURATION
 
 let s:grep_default_exe="/usr/bin/rg"

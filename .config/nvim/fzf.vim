@@ -2,7 +2,8 @@
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-command! -bang -nargs=? -complete=dir FilesP call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+command! -bang -nargs=? -complete=dir FilesP call fzf#vim#files(<q-args>, {'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,assets/node_modules/*,.git/*,_build/*}"', 'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+
 
 nnoremap <silent> <space><space> :FilesP<CR>
 nnoremap <C-p> :Files<CR>
