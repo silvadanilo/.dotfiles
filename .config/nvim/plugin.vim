@@ -67,6 +67,7 @@ Plug 'vim-scripts/Gundo'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'godlygeek/tabular'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'tommcdo/vim-exchange'
 
 Plug 'MarcWeber/vim-addon-local-vimrc'
 
