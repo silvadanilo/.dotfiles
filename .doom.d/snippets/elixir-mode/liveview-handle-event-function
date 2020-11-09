@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name:liveview-handle-event-function
+# key: 
+# --
+def handle_event(${1:event}, _params, socket) do
+  socket = assign(socket, ${2:key}: ${3:value})
+
+  {:noreply, socket}
+end

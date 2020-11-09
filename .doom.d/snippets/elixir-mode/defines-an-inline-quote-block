@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:defines-an-inline-quote-block 
+# key:qtl
+# --
+quote do: $0

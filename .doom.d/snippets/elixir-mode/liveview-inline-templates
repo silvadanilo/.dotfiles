@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:liveview-inline-templates 
+# key:lt 
+# --
+~L"""
+${0}
+"""

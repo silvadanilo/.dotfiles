@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:eex div with class 
+# key:div 
+# --
+<div class="$1">
+  $0
+</div>

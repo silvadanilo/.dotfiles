@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name:liveview-handle-info-function 
+# key:lhi 
+# --
+def handle_info(${1:message}, socket) do
+  socket = assign(socket, ${2:key}: ${3:value})
+
+  {:noreply, socket}
+end

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: define a new private one line function
+# key:defpl 
+# --
+defp ${1:name}(${2:params}), do: $0

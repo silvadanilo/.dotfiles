@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:defines a new one line function 
+# key:defl 
+# --
+def ${1:name}(${2:params}), do: $0

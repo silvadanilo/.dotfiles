@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:insert-before-compile-macro 
+# key:before_compile 
+# --
+defmacro __before_compile__(env) do
+  $0
+end

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:liveview-handle-params-function 
+# key:lhp 
+# --
+def handle_params(%{"${1:key}" => ${2:param}}, _url, socket) do
+  {:noreply, socket}
+end

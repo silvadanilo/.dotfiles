@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name:liveview-render-function 
+# key:render 
+# --
+def render(assigns) do
+  ~L"""
+  ${0}
+  """
+end

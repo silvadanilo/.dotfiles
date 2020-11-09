@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:define-a-quote-block 
+# key:qt 
+# --
+quote do
+  $0
+end

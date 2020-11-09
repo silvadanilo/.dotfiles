@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:defines a macro 
+# key:defm
+# --
+defmacro ${1:name}(${2:params}) do
+  $0
+end

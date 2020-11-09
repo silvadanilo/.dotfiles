@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:insert-using-macro 
+# key:using 
+# --
+defmacro __using__(opts) do
+  $0
+end

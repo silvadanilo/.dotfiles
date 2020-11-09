@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:error-tuple 
+# key:err
+# --
+{:error, ${1:value}}$0

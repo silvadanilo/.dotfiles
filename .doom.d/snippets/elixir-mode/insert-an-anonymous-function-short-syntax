@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:insert-an-anonymous-function-short-syntax 
+# key:&
+# --
+&($1)$0
