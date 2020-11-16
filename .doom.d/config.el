@@ -60,6 +60,48 @@
             ("wikit" . "https://it.wikipedia.org/wiki/")
             ("yts" . "https://www.youtube.com/results?search_query="))))
 
+;; ####### ORG-CAPTURE
+;; (setq org-capture-templates
+;;       '(("g" "Grocery today" checkitem (file+datetree "~/org/grocery.org")
+;;          "[ ] %?")))
+
+;; (defun schedule-grocery-hook ()
+;;   (if (string= (org-capture-get :description)
+;;                "Grocery today")     ;Must match the description in the template
+;;       (org-schedule 0 (format-time-string "%Y-%m-%d"))))
+
+;; (add-hook 'org-capture-before-finalize-hook 'schedule-grocery-hook)
+
+
+;; (setq org-capture-templates
+;;       '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+;;          "* TODO %?\n  %i\n  %a")
+;;         ("j" "Journal" entry (file+datetree "~/org/journal.org")
+;;          "* %?\nEntered on %U\n  %i\n  %a")))
+
+;; (setq org-capture-templates `(
+;; 	("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+;;         "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+;; 	("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+;;         "* %? [[%:link][%:description]] \nCaptured On: %U")
+;; ))
+
+(use-package org-protocol
+  :demand
+  :config
+  (add-to-list 'org-capture-templates
+               '("g" "Grocery List" checkitem (file+headline "~/org/deft/grocery-list.org" "Grocery List")
+                 "[ ] %? \n"))
+  (add-to-list 'org-capture-templates
+               '("e" "Event" entry (file+headline "~/org/deft/events.org" "Task")
+                 "** %? \n %^T \n"))
+  (add-to-list 'org-capture-templates
+               '("l" "Link" entry (file+headline "~/org/deft/articles.org" "Da Organizzare")
+                 "** %? \n%c\n")))
+
+
+(use-package ob-http :ensure t)
+
 ;; ########################### JIRA #############################
 (setq jiralib-url "https://casavo.atlassian.net")
 
@@ -94,9 +136,9 @@
 (define-key evil-normal-state-map (kbd "H") 'tab-previous)
 (define-key evil-normal-state-map (kbd "Q") 'kill-buffer-and-window)
 (define-key evil-normal-state-map (kbd "M-z") 'zoom-window-zoom)
-(define-key evil-insert-state-map (kbd "C-c C-k") 'evil-save-and-enter-normal-state)
-(define-key evil-normal-state-map (kbd "C-c C-k") 'evil-save-and-enter-normal-state)
-(define-key evil-motion-state-map (kbd "C-c C-k") 'evil-save-and-enter-normal-state)
+(define-key evil-insert-state-map (kbd "C-\\") 'evil-save-and-enter-normal-state)
+(define-key evil-normal-state-map (kbd "C-\\") 'evil-save-and-enter-normal-state)
+(define-key evil-motion-state-map (kbd "C-\\") 'evil-save-and-enter-normal-state)
 (define-key evil-insert-state-map (kbd "C-s") 'evil-save-and-enter-normal-state)
 (define-key evil-normal-state-map (kbd "C-s") 'evil-save-and-enter-normal-state)
 (define-key evil-motion-state-map (kbd "C-s") 'evil-save-and-enter-normal-state)
@@ -202,6 +244,9 @@
 ;; ((elixir-mode ((my/use-exunit-custom t)
 ;;                (my/exunit-custom-mix-cmd "docker exec -it worms mix"))))
 
+(add-hook 'elixir-mode-hook '(lambda ( )
+                               (modify-syntax-entry ?: "." elixir-mode-syntax-table)
+                               (modify-syntax-entry ?_ "w" elixir-mode-syntax-table)))
 
 (with-eval-after-load 'lsp-mode
         (dolist (dir '(
@@ -240,7 +285,7 @@
                 (tab-bar-new-tab)
                 (find-file filename))
 
-        (define-key! ivy-minibuffer-map "C-w" #'ivy-dispatching-done)
+        (define-key! ivy-minibuffer-map "C-v" #'ivy-dispatching-done)
 
         (ivy-set-actions
          'counsel-find-file
