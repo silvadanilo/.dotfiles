@@ -100,8 +100,6 @@
                  "** %? \n%c\n")))
 
 
-(use-package ob-http :ensure t)
-
 ;; ########################### JIRA #############################
 (setq jiralib-url "https://casavo.atlassian.net")
 
