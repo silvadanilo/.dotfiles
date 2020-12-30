@@ -19,6 +19,7 @@
 ;; ####################### LOOK ################################
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-tomorrow-night)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (tab-bar-mode)
 
@@ -198,7 +199,6 @@
 ;; ######################## ELIXIR ##########################
 (add-hook 'elixir-mode-hook #'lsp!)
 (add-to-list 'exec-path "/home/ubuntu/.elixir-ls/release")
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (after! lsp-ui
     (setq lsp-ui-doc-enable nil)
@@ -216,12 +216,15 @@
           company-lsp-match-candidate-predicate #'company-lsp-match-candidate-prefix
           ))
 
-(use-package! flycheck-credo
-              :after flycheck
-              :config
-              (flycheck-credo-setup)
-              (after! lsp-ui
-                      (flycheck-add-next-checker 'lsp 'elixir-credo)))
+;; (use-package! flycheck-credo
+;;               :after flycheck
+;;               :config
+;;               (flycheck-credo-setup)
+;;               (after! lsp-ui
+;;                       (flycheck-add-next-checker 'lsp 'elixir-credo)))
+(eval-after-load 'flycheck
+  '(flycheck-credo-setup))
+(add-hook 'elixir-mode-hook 'flycheck-mode)
 
 (defvar my/use-exunit-custom t)
 (defvar my/exunit-custom-mix-cmd "docker exec -it worms mix")
