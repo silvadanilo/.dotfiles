@@ -116,10 +116,13 @@ map <silent> <leader>w :set wrap!<CR>
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
-" Save file with ctrl+k
+" Save file with ctrl+k or ctrl+s
 :nnoremap <C-k> :w<CR>
 :inoremap <C-k> <Esc>:w<CR>
 :vnoremap <C-k> <Esc>:w<CR>
+:nnoremap <C-s> :w<CR>
+:inoremap <C-s> <Esc>:w<CR>
+:vnoremap <C-s> <Esc>:w<CR>
 
 " set limit of openable tab to 50
 set tabpagemax=50
