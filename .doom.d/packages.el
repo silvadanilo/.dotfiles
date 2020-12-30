@@ -61,6 +61,7 @@
 ;; (package! evil-tabs)
 (package! string-inflection)
 (package! wsd-mode)
+(package! ob-http)
 ;; (package! dmenu)
 ;; (package! elfeed)
 ;; (package! emms)
