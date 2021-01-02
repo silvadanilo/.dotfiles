@@ -2,6 +2,9 @@ alias tmux="TERM=screen-256color tmux"
 alias sumawk="awk '{s+=\$1} END {printf \"%.0f\", s}'"
 alias ops='git commit --amend --no-edit -n'
 alias duh='du -h --max-depth=1 | sort -h'
+alias find-duplicates='rdfind -checksum md5 -deleteduplicates true -n true'
+alias remove-duplicates='rdfind -checksum md5 -deleteduplicates true -n false'
+alias remove-empty-dirs='find . -type d -empty -delete'
 
 lxcsh() {
     lxc exec "$1" -- sudo --login --user ubuntu;
