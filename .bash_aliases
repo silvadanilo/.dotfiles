@@ -5,6 +5,7 @@ alias duh='du -h --max-depth=1 | sort -h'
 alias find-duplicates='rdfind -checksum md5 -deleteduplicates true -n true'
 alias remove-duplicates='rdfind -checksum md5 -deleteduplicates true -n false'
 alias remove-empty-dirs='find . -type d -empty -delete'
+alias monta-casa-sesto='sshfs -p 2222 -o allow_other,default_permissions danilo@casasesto:/ /media/asus/'
 
 lxcsh() {
     lxc exec "$1" -- sudo --login --user ubuntu;

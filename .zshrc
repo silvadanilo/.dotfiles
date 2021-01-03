@@ -137,3 +137,4 @@ function git_custom_status() {
 [ -n "$TMUX" ] && export TERM=screen-256color
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
+if [ -e /home/danilo/.nix-profile/etc/profile.d/nix.sh ]; then . /home/danilo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
