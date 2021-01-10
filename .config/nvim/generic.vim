@@ -86,6 +86,7 @@ nnoremap Y y$
 " Easy buffer close
 " nnoremap Q :lclose<CR>:cclose<CR>:bd<CR>
 nnoremap Q :bd<CR>
+:nnoremap <Space>bk :bd<CR>
 
 " Easy paragraph formatting
 nnoremap <leader>Q gqip
